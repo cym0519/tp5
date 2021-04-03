@@ -1,0 +1,96 @@
+<extend name="base/common"/>
+<block name="content">
+    <link rel="stylesheet" href="/static/api/css/global.css">
+    <link rel="stylesheet" href="/static/api/css/index.css">
+    <link rel="stylesheet" href="/static/api/css/pwd.css">
+<!--    <link rel="stylesheet" type="text/css" href="/static/api/css/cd.css" />-->
+    <div class="top_div">
+        <div class="jypt_div" style="visibility: hidden">
+            <h1>用户操作</h1>
+        </div>
+    </div>
+    <div class="wrap">
+        <div class="index" style="min-height: 891px;">
+            <header>
+                <title>飞跃疯人院</title>
+            </header>
+            <form id="reviseForm" class="i-form" method="post" action="">
+                <ul class="form-box">
+                    <li class="f-line clearfix">
+                        <label class="f-label">账号</label>
+                        <input id="c_name" class="f-input" type="text" value="" maxlength="20" placeholder="请输入账号" name="username">
+                    </li>
+                    <li class="f-line clearfix">
+                        <label class="f-label">密码</label>
+                        <input style="color: #000;" id="c_pass" class="f-input" type="password" maxlength="20" placeholder="请输入账号" name="password">
+                    </li>
+                    <div style="display:none"><input type="text" id="my_openid" value=""></div>
+                </ul>
+                <a href="{:url('api/api/retrieve')}" style="float: right;color: #009ad6;">找回密码?</a>
+                <input type="submit" value="立即登录" class="f-sub" id="denglu" style="background-color:#3b9ff3">
+                <input type="submit" value="立即注册" class="f-sub" id="zhuce" style="background-color:#f1f1f1; color: #4faeef">
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/api/js/jquery-2.1.1.min.js"></script>
+    <script src="/static/api/js/script.js"></script>
+    <script type="text/javascript">
+        //登录
+        $("#denglu").click(function(){
+            var username = $('#c_name').val();
+            var password = $('#c_pass').val();
+            var posturl = 'api/api/login';
+            if(username == "" || password =="") {
+                alert('请检查输入');
+                return false;
+            }
+            $.ajax({
+                type: 'post',
+                url:posturl,
+                data: $("#reviseForm").serialize(),
+                dataType:'json',
+                success:function (data) {
+                    if (data==1){
+                        msg('登录成功');
+                        window.setTimeout(function () {
+                            location.href="{:url('api/api/index')}";
+                        },5000);
+                    }else if (data==2){
+                            alert('登录失败');
+                            return false;
+                    }
+                }
+            })
+        });
+        //注册
+        $("#zhuce").click(function(){
+            var username = $('#c_name').val();
+            var password = $('#c_pass').val();
+            if(username == "") {
+                alert('账户不能为空');
+                return false;
+            }
+            if(password == ""){
+                alert('密码不能为空');
+                return false;
+            }else{
+                $.ajax({
+                    type:'post',
+                    url:"{:url('api/api/registered')}",
+                    data:{"username":username,"password":password},
+                    success:function(data){
+                        if (data==1) {
+                            msg('注册成功');
+                            window.setTimeout(function(){
+                                location.href="{:url('api/api/login')}";
+                            },10000);
+                        }else if(data==2){
+                            alert('注册失败');
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</block>

@@ -1,0 +1,78 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>云上长安</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1  maximum-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="HandheldFriendly" content="True">
+
+    <link rel="stylesheet" href="/static/api/css/materialize.css">
+    <link rel="stylesheet" href="/static/api/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/api/css/normalize.css">
+    <link rel="stylesheet" href="/static/api/css/owl.carousel.css">
+    <link rel="stylesheet" href="/static/api/css/owl.theme.css">
+    <link rel="stylesheet" href="/static/api/css/owl.transitions.css">
+    <link rel="stylesheet" href="/static/api/css/fakeLoader.css">
+    <link rel="stylesheet" href="/static/api/css/magnific-popup.css">
+    <link rel="stylesheet" href="/static/api/css/style.css">
+    <link rel="shortcut icon" href="/static/api/img/favicon.png">
+
+</head>
+<body>
+<!-- navbar top -->
+<div class="navbar-top">
+    <div class="side-nav-panel-left" style="margin-top: 10px">
+        <a href="" data-activates="slide-out-left" class="side-nav-left"><i class="fa fa-bars"></i></a>
+    </div>
+    <!-- site brand	 -->
+    <div class="site-brand">
+        <a href="{:url('api/index/index')}"><h1></h1></a>
+    </div>
+    <!-- end site brand	 -->
+    <div class="side-nav-panel-right" style="margin-top: 10px">
+        <a href="{:url('api/index/contact')}" class="side-nav-right"><i class="fa fa-envelope"></i></a>
+    </div>
+</div>
+<!-- end navbar top -->
+
+<!-- side nav left-->
+<div class="side-nav-panel-left">
+    <ul id="slide-out-left" class="side-nav side-nav-panel collapsible">
+        <li class="li-top"><a href="{:url('api/index/index')}"><i class="fa fa-home"></i>首页</a></li>
+        <li><a href="{:url('api/index/shop')}"><i class="fa fa-shopping-cart"></i>商店</a></li>
+        <li><a href="{:url('api/index/getweather')}"><i class="fa fa-bold"></i>天气预报</a></li>
+        <li><a href="{:url('api/index/getip')}"><i class="fa fa-th-large"></i>ip地址</a></li>
+        <li><a href="{:url('api/index/today')}"><i class="fa fa-dollar"></i>历史上的今天</a></li>
+        <li><a href=""><i class="fa fa-hourglass-half"></i>404</a></li>
+        <li><a href=""><i class="fa fa-support"></i>Testimonial</a></li>
+        <li><a href=""><i class="fa fa-user"></i>About Us</a></li>
+        <li><a href=""><i class="fa fa-envelope-o"></i>Contact Us</a></li>
+        <li><a href=""><i class="fa fa-sign-in"></i>Login</a></li>
+        <li><a href="" id="logout"><i class="fa fa-user-plus"></i>退出登录</a></li>
+    </ul>
+</div>
+<!-- end side nav left-->
+<!-- scripts -->
+<script src="/static/api/js/jquery.min.js"></script>
+<script src="/static/api/js/materialize.min.js"></script>
+<script src="/static/api/js/owl.carousel.min.js"></script>
+<script src="/static/api/js/fakeLoader.min.js"></script>
+<script src="/static/api/js/contact-form.js"></script>
+<script src="/static/api/js/main.js"></script>
+<script src="/static/layui/layui.js"></script>
+<script>
+    $(function () {
+        $('#logout').click(function () {
+            $.ajax({
+                url:"{:url('api/api/logout')}",
+                success:function (data) {
+                    location.href=data.url;
+                }
+            })
+        });
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<?php
+
+
+namespace app\api\controller;
+use think\Controller;
+use think\Request;
+use think\Session;
+
+class Index extends Controller
+{
+        //初始化
+    public function _initialize(){
+        if (!session('?name')){
+            $this->redirect('api/api/login');
+        }
+    }
+    //生成随机4位数验证码
+    public function mewscontent(){
+        $codedata = rand(1,9).rand(1,9).rand(1,9).rand(1,9);
+        return $codedata;
+    }
+    //项目首页
+    public function index(){
+        $data = [
+            'name' => Session::get('name'),
+            'rand' => $this->mewscontent()
+        ];
+        return $this->view->fetch('index',$data);
+    }
+    //联系页面
+    public function contact(){
+
+        return $this->view->fetch('contact');
+    }
+    //shop页面
+    public function shop(){
+
+        return $this->view->fetch('shop');
+    }
+    //获取天气情况
+    public function getweather(){
+        $city='南宁';
+        $result=weatherdata($city);
+        print_r($result);
+
+    }
+    //获取当前ip地址
+    public function getaddr(){
+
+        if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+            $cip = $_SERVER['HTTP_CLIENT_IP'];
+        }
+        else if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+            $cip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        }
+        else if(!empty($_SERVER["REMOTE_ADDR"])){
+            $cip = $_SERVER["REMOTE_ADDR"];
+        }else{
+            $cip = '';
+        }
+        preg_match("/[\d\.]{7,15}/", $cip, $cips);
+        $cip = isset($cips[0]) ? $cips[0] : 'unknown';
+        unset($cips);
+
+        return $cip;
+    }
+    //获取ip地址
+    public function getip(){
+        $request = Request();
+        print_r($request->ip());
+    }
+    //历史上的今天
+    public function today(){
+        $data=today();
+        $this->assign('data',$data);
+        return view();
+//        return view('today',$data);
+    }
+}

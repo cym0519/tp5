@@ -1,0 +1,126 @@
+{__NOLAYOUT__}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1  maximum-scale=1 user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="HandheldFriendly" content="True">
+
+    <link rel="stylesheet" href="/static/api/css/materialize.css">
+    <link rel="stylesheet" href="/static/api/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/api/css/normalize.css">
+    <link rel="stylesheet" href="/static/api/css/owl.carousel.css">
+    <link rel="stylesheet" href="/static/api/css/owl.theme.css">
+    <link rel="stylesheet" href="/static/api/css/owl.transitions.css">
+    <link rel="stylesheet" href="/static/api/css/fakeLoader.css">
+    <link rel="stylesheet" href="/static/api/css/style.css">
+
+    <link rel="shortcut icon" href="/static/api/img/favicon.png">
+
+</head>
+<body class="login-register-wrap">
+
+<!-- login register -->
+<div class="login-register-wrap-home">
+    <div class="container">
+        <div class="content">
+            <form action="" id="uploadform">
+                <input type="text" id="username" placeholder="用户名" name="username">
+                <input type="text" id="email" placeholder="邮箱" name="email">
+                <input style="width: 60%" type="text" id="code" placeholder="验证码" name="vcode">
+                <input style="background-color: #0b0b0b; width: 38%" type="button" id="mes" value="获取验证码" onclick="time(this)">
+<!--                <div class="content" style="" id="hide">-->
+                    <input type="text" id="newpass" placeholder="新密码" name="newpassword">
+                    <input type="text" id="c_newpass" placeholder="重复新密码" name="re_newpassword">
+<!--                </div>-->
+                <input style="background-color: #4faeef; width: 100px;margin: auto;margin-top: 20px;" type="button" id="confirm" value="确认">
+                <h6>已拥有账号 ? <a style="color:#6fa8dc" href="{:url('api/api/login')}">登录</a></h6>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- end login register -->
+
+<!-- scripts -->
+<script src="/static/api/js/jquery.min.js"></script>
+<script src="/static/api/js/materialize.min.js"></script>
+<script src="/static/api/js/owl.carousel.min.js"></script>
+<script src="/static/api/js/contact-form.js"></script>
+<script src="/static/api/js/fakeLoader.min.js"></script>
+<script src="/static/api/js/main.js"></script>
+<script src="/static/layui/layui.js"></script>
+<script type="text/javascript">
+    var wait=10;
+    function time(a){
+        if (wait ==0 ){
+            a.removeAttribute('disabled');
+            a.value = "获取验证码";
+            wait =10;
+        }else {
+            a.setAttribute('disabled',true);
+            a.value = wait+"秒后重新发送";
+            wait--;
+            setTimeout(function () {
+                time(a);
+            },1000);
+        }
+    }
+    $('#mes').click(function () {
+        var email = $('#email').val();
+        var reg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+        if (email == ''){
+            layer.msg('请输入邮箱');
+        }else{
+            $.ajax({
+                url:"{:url('api/api/sendmes')}",
+                type: 'post',
+                data: {"email":email},
+                dataType: 'json',
+                success:function (data) {
+                    if (data.code==1){
+                        layer.msg(data.msg);
+                    }else {
+                        layer.msg(data.msg);
+                    }
+                }
+
+            })
+        }
+    });
+    $('#reg').click(function () {
+        var username = $('#name').val();
+        var password = $('#pass').val();
+        var c_pass = $('#c_pass').val();
+        if (username == ''){
+            alert('请输入账号');
+        }else if (password == ''){
+            alert('请输入密码');
+        }else if (c_pass == ''){
+            alert('请确认密码');
+        }else {
+            $.ajax({
+                url:"{:url('api/api/register')}",
+                type:'post',
+                data:$('form').serialize(),
+                dataType:"json",
+                success:function (data) {
+                    if (data.code==1){
+                        layer.msg(data.msg);
+                        setTimeout(function () {
+                            location.href=data.url;
+                        },1000);
+                    }else{
+                        layer.msg(data.msg);
+                        setTimeout(function () {
+                            window.location.reload();
+                        },5000);
+                    }
+                }
+            })
+        }
+    });
+</script>
+</body>
+</html>
