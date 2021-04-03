@@ -31,3 +31,328 @@
 [ info ] [ LOG ] INIT File
 
 ---------------------------------------------------------------
+[ 2021-04-04T00:15:33+08:00 ] 172.22.7.183 171.109.233.111 GET /api/login.html
+[ log ] 120.77.146.195/api/login.html [运行时间：0.020530s][吞吐率：48.71req/s] [内存消耗：1,954.72kb] [文件加载：51]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'api',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '120.77.146.195',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'referer' => 'http://120.77.146.195/index/index.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=t4djab3mcln4s4ncdkj91v6fj4',
+)
+[ info ] [ PARAM ] array (
+  '/api/login_html' => '',
+)
+[ info ] [ RUN ] app\api\controller\Api->login[ /usr/local/apache/htdocs/tp5/application/api/controller/Api.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] /usr/local/apache/htdocs/tp5/public/../application/api/view/api/login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2021-04-04T00:15:33+08:00 ] 172.22.7.183 171.109.233.111 GET /captcha.html
+[ log ] 120.77.146.195/captcha.html [运行时间：0.016322s][吞吐率：61.27req/s] [内存消耗：1,562.79kb] [文件加载：40]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '120.77.146.195',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36',
+  'accept' => 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+  'referer' => 'http://120.77.146.195/api/login.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=t4djab3mcln4s4ncdkj91v6fj4',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ /usr/local/apache/htdocs/tp5/vendor/topthink/think-captcha/src/CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2021-04-04T00:15:35+08:00 ] 172.22.7.183 171.109.233.111 GET /api/login.html
+[ log ] 120.77.146.195/api/login.html [运行时间：0.021004s][吞吐率：47.61req/s] [内存消耗：1,954.72kb] [文件加载：51]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'api',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '120.77.146.195',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'referer' => 'http://120.77.146.195/index/index.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=t4djab3mcln4s4ncdkj91v6fj4',
+)
+[ info ] [ PARAM ] array (
+  '/api/login_html' => '',
+)
+[ info ] [ RUN ] app\api\controller\Api->login[ /usr/local/apache/htdocs/tp5/application/api/controller/Api.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] /usr/local/apache/htdocs/tp5/public/../application/api/view/api/login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2021-04-04T00:15:35+08:00 ] 172.22.7.183 171.109.233.111 GET /captcha.html
+[ log ] 120.77.146.195/captcha.html [运行时间：0.023124s][吞吐率：43.25req/s] [内存消耗：1,562.79kb] [文件加载：40]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '120.77.146.195',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36',
+  'accept' => 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+  'referer' => 'http://120.77.146.195/api/login.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=t4djab3mcln4s4ncdkj91v6fj4',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ /usr/local/apache/htdocs/tp5/vendor/topthink/think-captcha/src/CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2021-04-04T00:15:36+08:00 ] 172.22.7.183 171.109.233.111 GET /api/login.html
+[ log ] 120.77.146.195/api/login.html [运行时间：0.022757s][吞吐率：43.94req/s] [内存消耗：1,954.72kb] [文件加载：51]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'api',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '120.77.146.195',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'referer' => 'http://120.77.146.195/index/index.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=t4djab3mcln4s4ncdkj91v6fj4',
+)
+[ info ] [ PARAM ] array (
+  '/api/login_html' => '',
+)
+[ info ] [ RUN ] app\api\controller\Api->login[ /usr/local/apache/htdocs/tp5/application/api/controller/Api.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] /usr/local/apache/htdocs/tp5/public/../application/api/view/api/login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2021-04-04T00:15:36+08:00 ] 172.22.7.183 171.109.233.111 GET /captcha.html
+[ log ] 120.77.146.195/captcha.html [运行时间：0.017628s][吞吐率：56.73req/s] [内存消耗：1,562.79kb] [文件加载：40]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '120.77.146.195',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36',
+  'accept' => 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+  'referer' => 'http://120.77.146.195/api/login.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=t4djab3mcln4s4ncdkj91v6fj4',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ /usr/local/apache/htdocs/tp5/vendor/topthink/think-captcha/src/CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2021-04-04T00:15:37+08:00 ] 172.22.7.183 171.109.233.111 GET /captcha.html?0.9717191369100662
+[ log ] 120.77.146.195/captcha.html?0.9717191369100662 [运行时间：0.016697s][吞吐率：59.89req/s] [内存消耗：1,562.84kb] [文件加载：40]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '120.77.146.195',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36',
+  'accept' => 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+  'referer' => 'http://120.77.146.195/api/login.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=t4djab3mcln4s4ncdkj91v6fj4',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  '0_9717191369100662' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ /usr/local/apache/htdocs/tp5/vendor/topthink/think-captcha/src/CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2021-04-04T00:15:37+08:00 ] 172.22.7.183 171.109.233.111 GET /captcha.html?0.9914068185843268
+[ log ] 120.77.146.195/captcha.html?0.9914068185843268 [运行时间：0.017036s][吞吐率：58.70req/s] [内存消耗：1,562.84kb] [文件加载：40]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '120.77.146.195',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36',
+  'accept' => 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+  'referer' => 'http://120.77.146.195/api/login.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=t4djab3mcln4s4ncdkj91v6fj4',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  '0_9914068185843268' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ /usr/local/apache/htdocs/tp5/vendor/topthink/think-captcha/src/CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
