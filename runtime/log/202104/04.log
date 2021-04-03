@@ -356,3 +356,366 @@
 [ info ] [ LOG ] INIT File
 
 ---------------------------------------------------------------
+[ 2021-04-04T00:29:46+08:00 ] 172.22.7.183 40.123.43.32 GET /
+[ log ] cymc.online/ [运行时间：0.020501s][吞吐率：48.78req/s] [内存消耗：1,949.40kb] [文件加载：51]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'cymc.online',
+  'keep-alive' => '300',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'accept-language' => 'en-US,en;q=0.5',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\api\controller\Api->login[ /usr/local/apache/htdocs/tp5/application/api/controller/Api.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] /usr/local/apache/htdocs/tp5/public/../application/api/view/api/login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2021-04-04T00:29:46+08:00 ] 172.22.7.183 40.123.43.32 GET /
+[ log ] cymc.online/ [运行时间：0.020299s][吞吐率：49.26req/s] [内存消耗：1,949.40kb] [文件加载：51]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'cymc.online',
+  'keep-alive' => '300',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'accept-language' => 'en-US,en;q=0.5',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\api\controller\Api->login[ /usr/local/apache/htdocs/tp5/application/api/controller/Api.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] /usr/local/apache/htdocs/tp5/public/../application/api/view/api/login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2021-04-04T00:29:47+08:00 ] 172.22.7.183 40.123.43.32 GET /wp-includes/wlwmanifest.xml
+[ log ] cymc.online/wp-includes/wlwmanifest.xml [运行时间：0.015781s][吞吐率：63.37req/s] [内存消耗：1,519.67kb] [文件加载：42]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'wp-includes',
+    2 => 'wlwmanifest.xml',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'cymc.online',
+  'keep-alive' => '300',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'accept-language' => 'en-US,en;q=0.5',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+)
+[ info ] [ PARAM ] array (
+  '/wp-includes/wlwmanifest_xml' => '',
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2021-04-04T00:29:47+08:00 ] 172.22.7.183 124.71.180.89 GET /
+[ log ] www.cymc.online/ [运行时间：0.026172s][吞吐率：38.21req/s] [内存消耗：1,950.22kb] [文件加载：51]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.cymc.online',
+  'accept' => 'text/html, application/xhtml+xml, application/xml; q=0.9, image/webp, image/apng, */*; q=0.8, application/signed-exchange; v=b3; q=0.9',
+  'accept-language' => 'zh-CN, zh; q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'sec-fetch-site' => 'none',
+  'sec-fetch-mode' => 'navigate',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 7.7; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.2378.88 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\api\controller\Api->login[ /usr/local/apache/htdocs/tp5/application/api/controller/Api.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] /usr/local/apache/htdocs/tp5/public/../application/api/view/api/login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2021-04-04T00:29:48+08:00 ] 172.22.7.183 40.123.43.32 GET /
+[ log ] cymc.online/ [运行时间：0.018461s][吞吐率：54.17req/s] [内存消耗：1,949.40kb] [文件加载：51]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'cymc.online',
+  'keep-alive' => '300',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'accept-language' => 'en-US,en;q=0.5',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\api\controller\Api->login[ /usr/local/apache/htdocs/tp5/application/api/controller/Api.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] /usr/local/apache/htdocs/tp5/public/../application/api/view/api/login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2021-04-04T00:29:49+08:00 ] 172.22.7.183 40.123.43.32 GET /wordpress/wp-includes/wlwmanifest.xml
+[ log ] cymc.online/wordpress/wp-includes/wlwmanifest.xml [运行时间：0.015197s][吞吐率：65.80req/s] [内存消耗：1,519.71kb] [文件加载：42]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'wordpress',
+    2 => 'wp-includes',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'cymc.online',
+  'keep-alive' => '300',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'accept-language' => 'en-US,en;q=0.5',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+)
+[ info ] [ PARAM ] array (
+  '/wordpress/wp-includes/wlwmanifest_xml' => '',
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2021-04-04T00:29:50+08:00 ] 172.22.7.183 40.123.43.32 GET /wp/wp-includes/wlwmanifest.xml
+[ log ] cymc.online/wp/wp-includes/wlwmanifest.xml [运行时间：0.018630s][吞吐率：53.68req/s] [内存消耗：1,519.68kb] [文件加载：42]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'wp',
+    2 => 'wp-includes',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'cymc.online',
+  'keep-alive' => '300',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'accept-language' => 'en-US,en;q=0.5',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+)
+[ info ] [ PARAM ] array (
+  '/wp/wp-includes/wlwmanifest_xml' => '',
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2021-04-04T00:29:51+08:00 ] 172.22.7.183 40.123.43.32 GET /news/wp-includes/wlwmanifest.xml
+[ log ] cymc.online/news/wp-includes/wlwmanifest.xml [运行时间：0.015762s][吞吐率：63.44req/s] [内存消耗：1,519.69kb] [文件加载：42]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'news',
+    2 => 'wp-includes',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'cymc.online',
+  'keep-alive' => '300',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'accept-language' => 'en-US,en;q=0.5',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+)
+[ info ] [ PARAM ] array (
+  '/news/wp-includes/wlwmanifest_xml' => '',
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2021-04-04T00:29:51+08:00 ] 172.22.7.183 40.123.43.32 GET /2018/wp-includes/wlwmanifest.xml
+[ log ] cymc.online/2018/wp-includes/wlwmanifest.xml [运行时间：0.015627s][吞吐率：63.99req/s] [内存消耗：1,519.69kb] [文件加载：42]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => '2018',
+    2 => 'wp-includes',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'cymc.online',
+  'keep-alive' => '300',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'accept-language' => 'en-US,en;q=0.5',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+)
+[ info ] [ PARAM ] array (
+  '/2018/wp-includes/wlwmanifest_xml' => '',
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2021-04-04T00:29:53+08:00 ] 172.22.7.183 40.123.43.32 GET /wp1/wp-includes/wlwmanifest.xml
+[ log ] cymc.online/wp1/wp-includes/wlwmanifest.xml [运行时间：0.014058s][吞吐率：71.13req/s] [内存消耗：1,519.68kb] [文件加载：42]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'wp1',
+    2 => 'wp-includes',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'cymc.online',
+  'keep-alive' => '300',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'accept-language' => 'en-US,en;q=0.5',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+)
+[ info ] [ PARAM ] array (
+  '/wp1/wp-includes/wlwmanifest_xml' => '',
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2021-04-04T00:29:53+08:00 ] 172.22.7.183 40.123.43.32 GET /test/wp-includes/wlwmanifest.xml
+[ log ] cymc.online/test/wp-includes/wlwmanifest.xml [运行时间：0.014212s][吞吐率：70.36req/s] [内存消耗：1,519.69kb] [文件加载：42]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'test',
+    2 => 'wp-includes',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'cymc.online',
+  'keep-alive' => '300',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'accept-language' => 'en-US,en;q=0.5',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+)
+[ info ] [ PARAM ] array (
+  '/test/wp-includes/wlwmanifest_xml' => '',
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2021-04-04T00:29:56+08:00 ] 172.22.7.183 40.123.43.32 GET /sito/wp-includes/wlwmanifest.xml
+[ log ] cymc.online/sito/wp-includes/wlwmanifest.xml [运行时间：0.018393s][吞吐率：54.37req/s] [内存消耗：1,519.69kb] [文件加载：42]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'sito',
+    2 => 'wp-includes',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'cymc.online',
+  'keep-alive' => '300',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'accept-language' => 'en-US,en;q=0.5',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+)
+[ info ] [ PARAM ] array (
+  '/sito/wp-includes/wlwmanifest_xml' => '',
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
