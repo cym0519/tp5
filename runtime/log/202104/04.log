@@ -1,0 +1,33 @@
+[ 2021-04-04T00:08:04+08:00 ] 172.22.7.183 51.210.182.66 GET /
+[ log ] cymc.online/ [运行时间：0.018937s][吞吐率：52.81req/s] [内存消耗：1,948.93kb] [文件加载：51]
+[ info ] [ LANG ] /usr/local/apache/htdocs/tp5/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'api'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'cymc.online',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'connection' => 'Keep-Alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\api\controller\Api->login[ /usr/local/apache/htdocs/tp5/application/api/controller/Api.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] /usr/local/apache/htdocs/tp5/public/../application/api/view/api/login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
