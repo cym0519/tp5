@@ -118,7 +118,33 @@ function today(){
         echo "请求失败";
     }
 }
-
+//IP的归属地查询
+function ipaddr($ip){
+    //接口请求key
+    $appkey = "3543163a1f7ccc4a2c5ffb0246494db4";
+    //
+    $url = "http://apis.juhe.cn/ip/ipNew";
+    $params = [
+        "ip" => $ip,//需要查询的IP地址或域名
+        "key" => $appkey,//应用APPKEY(应用详细页查询)
+    ];
+    $paramstring = http_build_query($params);
+    $content = juhecurl($url, $paramstring, 1);
+    $result = json_decode($content, true);
+    if ($result) {
+        if ($result['error_code'] == 0) {
+//            echo "国家：{$result['result']['Country']}" . PHP_EOL;
+//            echo "省份：{$result['result']['Province']}" . PHP_EOL;
+//            echo "城市：{$result['result']['City']}" . PHP_EOL;
+//            echo "运营商：{$result['result']['Isp']}" . PHP_EOL;
+            return $result['result']['City'];
+        } else {
+            return $result['error_code'].':'.$result['reason'] . PHP_EOL;
+        }
+    } else {
+        echo "请求失败";
+    }
+}
 //聚合数据API接口
 function juhecurl($url,$params=false,$ispost=0){
     $httpInfo = array();
