@@ -39,41 +39,22 @@ class Index extends Controller
     }
     //获取天气情况
     public function getweather(){
-        $city='南宁';
+//        $ip='116.11.100.166';
+        $ip=$this->getip();
+        $city=ipaddr($ip);
         $result=weatherdata($city);
         print_r($result);
 
     }
-    //获取当前ip地址
-    public function getaddr(){
-
-        if(!empty($_SERVER['HTTP_CLIENT_IP'])){
-            $cip = $_SERVER['HTTP_CLIENT_IP'];
-        }
-        else if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-            $cip = $_SERVER["HTTP_X_FORWARDED_FOR"];
-        }
-        else if(!empty($_SERVER["REMOTE_ADDR"])){
-            $cip = $_SERVER["REMOTE_ADDR"];
-        }else{
-            $cip = '';
-        }
-        preg_match("/[\d\.]{7,15}/", $cip, $cips);
-        $cip = isset($cips[0]) ? $cips[0] : 'unknown';
-        unset($cips);
-
-        return $cip;
-    }
     //获取ip地址
     public function getip(){
         $request = Request();
-        print_r($request->ip());
+        return $request->ip();
     }
     //历史上的今天
     public function today(){
         $data=today();
         $this->assign('data',$data);
         return view();
-//        return view('today',$data);
     }
 }
