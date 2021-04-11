@@ -12,6 +12,8 @@ use think\validate;
 use app\api\model\Api as IndexModel;
 use app\api\model\UserInfo;
 use \think\Controller;
+use think\Log;
+
 class Api extends Controller{
     //退出登录
     public function logout(){
@@ -185,21 +187,152 @@ class Api extends Controller{
             dump($validate->getError());
         }
     }
+    //对接微信公众平台
     public function dockweixin(){
-        //将timestamp,nonce，token按字典排序
-        $timestamp = $_GET['timestamp'];
-        $nonce     = $_GET['nonce'];
-        $token     = 'weixin';
-        $signature = $_GET['signature'];
-        $array     = array($timestamp, $nonce, $token);
-        sort($array);
-        //将排序后的三个参数拼接之后用sha1加密
-        $tmpstr = implode('',$array);
-        $tmpstr = sha1($tmpstr);
-        //将加密后的字符串与signature进行对比，判断该请求是否来自微信
-        if($tmpstr == $signature){
-            echo $_GET['echostr'];
+        if (isset($_GET['echostr'])) {
+            $this->valid();
+        }else{
+            $this->responseMsg();
+        }
+    }
+    //
+    public function valid(){
+        $echostr = $_GET["echostr"];
+        if ($this->checkSignature()) {
+            header('content-type:text');
+            echo $echostr;
             exit;
         }
+    }
+    //验证微信
+    public function checkSignature(){
+        $signature = $_GET["signature"];
+        $timestamp = $_GET["timestamp"];
+        $nonce = $_GET["nonce"];
+        $token = 'cym';
+        $tmpArr = array($token, $timestamp, $nonce);
+        sort($tmpArr, SORT_STRING);
+        $tmpStr = implode( $tmpArr );
+        $tmpStr = sha1( $tmpStr );
+    
+        if( $tmpStr == $signature ){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    //接收微信事件推送并回复
+    public function responseMsg(){
+        //获取到微信推送过来的post数据(XML格式)
+        // $postArr = $GLOBALS["HTTP_RAW_POST_DATA"];
+        $postArr = isset($GLOBALS['HTTP_RAW_POST_DATA']) ? $GLOBALS['HTTP_RAW_POST_DATA'] : file_get_contents("php://input");
+        //处理消息类型，并设置回复类型和内容
+        // $postObj = simplexml_load_string($postArr);
+        $postObj = simplexml_load_string($postArr,'SimpleXMLElement',LIBXML_NOCDATA);
+        $keyword = trim($postObj->Content);
+        //判断该数据包是否是订阅的事件推送
+        if(strtolower($postObj->MsgType) == 'event'){
+            //如果是关注 subscribe 事件
+            if ( strtolower($postObj->Event == 'subscribe')) {
+                echo $this->subscribe($postObj);
+            }
+        }else if ( strtolower($postObj->MsgType == 'text') && trim($postObj->Content) == '图片') {
+            echo $this->image($postObj);
+        }else{
+            echo $this->text($postObj);
+        }
+    }
+    //关注后回复的信息
+    public function subscribe($postObj){
+        //回复信息
+        $toUser   = $postObj->FromUserName;
+        $fromUser = $postObj->ToUserName;
+        $time     = time();
+        $msgType  = 'text';
+        $content  = '欢迎来到云上长安';
+        $template = "<xml>
+                    <ToUserName><![CDATA[%s]]></ToUserName>
+                    <FromUserName><![CDATA[%s]]></FromUserName>
+                    <CreateTime>%s</CreateTime>
+                    <MsgType><![CDATA[%s]]></MsgType>
+                    <Content><![CDATA[%s]]></Content>
+                    </xml>";
+        return sprintf($template,$toUser,$fromUser,$time,$msgType,$content);
+    }
+    //文本回复
+    public function text($postObj){
+        switch ( trim($postObj->Content)) {
+            case trim($postObj->Content):
+                $content = '您输入的是：'.trim($postObj->Content);
+                break;
+            case '2';
+                $content = '你输入的是2';
+                break;
+            case 'tel';
+                $content = '15677135691';
+                break;
+            case 'php';
+                $content = 'php是世界上最好的编程语言';
+                break;
+            default:
+                break;
+        }
+        $toUser   = $postObj->FromUserName;
+        $fromUser = $postObj->ToUserName;
+        $time     = time();
+        $msgType  = 'text';
+        $template = "<xml>
+                    <ToUserName><![CDATA[%s]]></ToUserName>
+                    <FromUserName><![CDATA[%s]]></FromUserName>
+                    <CreateTime>%s</CreateTime>
+                    <MsgType><![CDATA[%s]]></MsgType>
+                    <Content><![CDATA[%s]]></Content>
+                    </xml>";
+        return sprintf($template,$toUser,$fromUser,$time,$msgType,$content);
+    }
+    //单多图文回复,开发者只能回复单图文
+    public function image($postObj){
+        $toUser   = $postObj->FromUserName;
+        $fromUser = $postObj->ToUserName;
+        $time     = time();
+        $msgType  = 'news';
+        $arr = array(
+            array(
+                'title' => '一曲肝肠断,天涯何处觅知音',
+                'description' => '你看,这就是专业!',
+                'picurl' =>'http://120.77.146.195/static/api/img/login-bg.jpg',
+                'url' => 'http://www.jd.com'
+            ),
+            array(
+                'title' => '侠客行',
+                'description' => '千里走单骑',
+                'picurl' =>'http://120.77.146.195/static/api/img/about.jpg',
+                'url' => 'http://www.baidu.com'
+            ),
+            array(
+                'title' => '诗经',
+                'description' => '乐府诗集',
+                'picurl' =>'http://120.77.146.195/static/api/img/blog1.jpg',
+                'url' => 'http://www.qq.com'
+            ),
+        );
+        $template = "<xml>
+                    <ToUserName><![CDATA[%s]]></ToUserName>
+                    <FromUserName><![CDATA[%s]]></FromUserName>
+                    <CreateTime>%s</CreateTime>
+                    <MsgType><![CDATA[%s]]></MsgType>
+                    <ArticleCount>".count($arr)."</ArticleCount>
+                    <Articles>";
+        foreach($arr as $key=>$v){
+                $template .= "<item>
+                            <Title><![CDATA[".$v['title']."]]></Title>
+                            <Description><![CDATA[".$v['description']."]]></Description>
+                            <PicUrl><![CDATA[".$v['picurl']."]]></PicUrl>
+                            <Url><![CDATA[".$v['url']."]]></Url>
+                            </item>";
+        }
+        $template .= "</Articles>
+                    </xml>";
+        return sprintf($template,$toUser,$fromUser,$time,$msgType);          
     }
 }
