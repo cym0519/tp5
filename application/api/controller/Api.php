@@ -335,4 +335,42 @@ class Api extends Controller{
                     </xml>";
         return sprintf($template,$toUser,$fromUser,$time,$msgType);          
     }
+    //获取微信accesstoken
+    public function getwxaccesstoken(){
+        $appid = 'wxc96b721749eb94df';
+        $appsecret   = 'f539369d553ffe14994f504125ec5653';
+        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$appsecret;
+        //初始化
+        $ch = curl_init();
+        //设置参数
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        //调用接口
+        $res = curl_exec($ch);
+        if(curl_error($ch)){
+            var_dump(curl_error($ch));
+        }
+        //关闭接口
+        curl_close($ch);
+        //返回json数据
+        $arr = json_decode($res,true);
+        var_dump($arr);
+    }
+    //获取微信服务器地址ip
+    public function getwxip(){
+        $accesstoken = '44_3dotACQFLYQh5YGAToN_-pDTf5Lw9x4o2zm7bPdg8KeMztRxT1vJ0eSdteLfF5vAwKAf_nZmde30jl7nUenD9dy8yyjBDBA6APckglgRLoY61VNa2T-5RVFV6CeVyDlVYuN_xcBRlx-MzGIkYODaAEAHXM';
+        $url = "https://api.weixin.qq.com/cgi-bin/get_api_domain_ip?access_token=".$accesstoken;
+        $ch = curl_init();
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $res = curl_exec($ch);
+        if(curl_error($ch)){
+            var_dump(curl_error($ch));
+        }
+        curl_close($ch);
+        $arr = json_decode($res,true);
+        print_r($arr['ip_list']);
+    }
 }
