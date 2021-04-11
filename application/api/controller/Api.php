@@ -355,11 +355,11 @@ class Api extends Controller{
         curl_close($ch);
         //返回json数据
         $arr = json_decode($res,true);
-        var_dump($arr);
+        return $arr['access_token'];
     }
     //获取微信服务器地址ip
     public function getwxip(){
-        $accesstoken = '44_3dotACQFLYQh5YGAToN_-pDTf5Lw9x4o2zm7bPdg8KeMztRxT1vJ0eSdteLfF5vAwKAf_nZmde30jl7nUenD9dy8yyjBDBA6APckglgRLoY61VNa2T-5RVFV6CeVyDlVYuN_xcBRlx-MzGIkYODaAEAHXM';
+        $accesstoken = $this->getwxaccesstoken();
         $url = "https://api.weixin.qq.com/cgi-bin/get_api_domain_ip?access_token=".$accesstoken;
         $ch = curl_init();
         curl_setopt($ch,CURLOPT_URL,$url);
