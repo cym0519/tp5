@@ -262,17 +262,20 @@ class Api extends Controller{
     //文本回复
     public function text($postObj){
         switch ( trim($postObj->Content)) {
-            case trim($postObj->Content):
-                $content = '您输入的是：'.trim($postObj->Content);
-                break;
-            case '2';
-                $content = '你输入的是2';
+            case '陈焕';
+                $content = '颠佬正传';
                 break;
             case 'tel';
                 $content = '15677135691';
                 break;
             case 'php';
                 $content = 'php是世界上最好的编程语言';
+                break;
+            case "？";
+                $content = date("Y-m-d H:i:s",time());
+                break;
+            case trim($postObj->Content):
+                $content = '您输入的是：'.trim($postObj->Content);
                 break;
             default:
                 break;
@@ -337,8 +340,8 @@ class Api extends Controller{
     }
     //获取微信accesstoken
     public function getwxaccesstoken(){
-        $appid = 'wxc96b721749eb94df';
-        $appsecret   = 'f539369d553ffe14994f504125ec5653';
+        $appid = 'wxf06de655a2c4307f';
+        $appsecret   = 'a0a54ae36a67c4c97a086ebcc247fa08';
         $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$appsecret;
         //初始化
         $ch = curl_init();
@@ -373,4 +376,145 @@ class Api extends Controller{
         $arr = json_decode($res,true);
         print_r($arr['ip_list']);
     }
+    //获取用户openid
+    public function getwxinfo(){
+        //获取code
+        $appid = 'wxf06de655a2c4307f';
+        $redirect_uri = urlencode("http://120.77.146.195/api/getwxcode");
+        $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$appid."&redirect_uri=".$redirect_uri."&response_type=code&scope=snsapi_base&state=0519#wechat_redirect";
+        echo "<script language='javascript'>window.location='".$url."'</script>";
+        // header('location:'.$url);
+    }
+    //获取accesstoken
+    public function getwxcode(){
+        //获取到网页授权的accesstoken
+        $appid = 'wxf06de655a2c4307f';
+        $appsecret = 'a0a54ae36a67c4c97a086ebcc247fa08';
+        $code = $_GET['code'];
+        $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$appsecret."&code=".$code."&grant_type=authorization_code";
+        $res = curl_get($url);
+        $data = json_decode($res,true);
+        return $data['access_token'];
+    }
+    //
+    public function getuser()
+    {
+        $appid = 'wxf06de655a2c4307f';
+        $redirect_uri = urlencode("http://120.77.146.195/api/getuserinfo");
+        $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$appid."&redirect_uri=".$redirect_uri."&response_type=code&scope=snsapi_userinfo&state=0519#wechat_redirect";
+        // echo "<script language='javascript'>window.location='".$url."'</script>";
+        header('location:'.$url);
+    }
+    //获取用户详细信息
+    public function getuserinfo(){
+        $appid = 'wxf06de655a2c4307f';
+        $appsecret = 'a0a54ae36a67c4c97a086ebcc247fa08';
+        $code = $_GET['code'];
+        $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$appsecret."&code=".$code."&grant_type=authorization_code";
+        $res = curl_get($url);
+        $data = json_decode($res,true);
+        $accesstoken = $data['access_token'];
+        $openid = $data['openid'];
+        //获取用户详细信息
+        $url = "https://api.weixin.qq.com/sns/userinfo?access_token=".$accesstoken."&openid=".$openid."&lang=zh_CN";
+        $result = curl_get($url);
+        print_r($result);
+
+    }
+    //微信分享
+    public function share(){
+        $jsapiticket = $this->getjsapiticket();
+        $url = 'http://120.77.146.195/api/share';
+        $timestamp = time();
+        $noncestr = $this->getrandcode();
+        $signature = "jsapiticket=".$jsapiticket."&noncestr=".$noncestr."&timestamp=".$timestamp."&url=".$url;
+        print_r($signature);exit;
+        $signature = sha1($signature);
+        $data = [
+            'signature' => $signature,
+            'noncestr' => $noncestr,
+            'timestamp' => $timestamp,
+            'name' => 'cym'
+        ];
+        print_r($data);
+        return $this->fetch('share',$data);
+    }
+    //获取票据
+    public function getjsapiticket(){
+        if(Session::get('jsapiticket') && Session::get('jsapiticket_time') > time()){
+            $jsapiticket = Session::get('jsapiticket');
+        }else{
+            $accesstoken = $this->getwxaccesstoken();
+            $url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=".$accesstoken."&type=jsapi";
+            $res = curl_get($url);
+            $data = json_decode($res,true);
+            $jsapiticket = $data['ticket'];
+            Session('jsapiticket',$jsapiticket);
+            Session('jsapiticket_time',time()+7000);
+        }
+        return $jsapiticket;
+    }
+     //获取随机码
+     public function getrandcode($num=16){
+        $array = [
+            'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+            'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+            '0','1','2','3','4','5','6','7','8','9'
+        ];
+        $tmpstr = '';
+        $max = count($array);
+        for ($i=1; $i <=$num; $i++) { 
+            $key = rand(0,$max-1);
+            $tmpstr .= $array[$key];
+        }
+        return $tmpstr;
+     }
+     public function http_curl($url,$type = 'get',$res = 'json',$arr = ''){
+        $ch = curl_init();
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        if($type == 'post'){
+            curl_setopt($ch,CURLOPT_POST,1);
+            curl_setopt($ch,CURLOPT_POSTFIELDS,$arr);
+        }
+        $result = curl_exec($ch);
+        curl_close($ch);
+        return json_decode($result,true);
+
+     }
+     //创建微信菜单
+     public function creatmenu(){
+        $accesstoken = $this->getwxaccesstoken();
+        $url = "https://api.weixin.qq.com/cgi-bin/menu/addconditional?access_token=".$accesstoken;
+        $postArr = array(
+            'button' => array(
+                array(
+                    'name' =>'菜单1',
+                    'type' =>'click',
+                    'key' =>'item1'
+                ),
+                array(
+                    'name' =>'菜单2',
+                    'sub_button' =>array(
+                        array(
+                            'name' =>'歌曲',
+                            'type' =>'click',
+                            'key' =>'songs',
+                        ),
+                        array(
+                            'name' =>'电影',
+                            'type' =>'view',
+                            'url' =>'http://www.jd.com',
+                        ),
+                    ),
+                ),
+            ),
+            array(),
+            array()
+        );
+        $postjson = json_encode($postArr);
+        $result = $this->http_curl($url,'post','json',$postjson);
+        var_dump($result);
+     }   
 }
