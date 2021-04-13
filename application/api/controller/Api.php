@@ -238,6 +238,19 @@ class Api extends Controller{
             }
         }else if ( strtolower($postObj->MsgType == 'text') && trim($postObj->Content) == '图片') {
             echo $this->image($postObj);
+        }else if( strtolower(($postObj->Event) == 'click')){
+            if (strtolower($postObj->EventKey) == 'sousuo'){
+                $content = '这是搜索菜单的事件推送';
+                echo $this->test($postObj,$content);
+            }
+            if (strtolower($postObj->EventKey) == 'yuyin'){
+                $content = '这是语音菜单的事件推送';
+                echo $this->test($postObj,$content);
+            }
+            if (strtolower($postObj->EventKey) == 'youxi'){
+                $content = '这是游戏菜单的事件推送';
+                echo $this->test($postObj,$content);
+            }
         }else{
             echo $this->text($postObj);
         }
@@ -260,7 +273,7 @@ class Api extends Controller{
         return sprintf($template,$toUser,$fromUser,$time,$msgType,$content);
     }
     //文本回复
-    public function text($postObj){
+    public function text($postObj,$content){
         switch ( trim($postObj->Content)) {
             case '陈焕';
                 $content = '颠佬正传';
@@ -480,41 +493,61 @@ class Api extends Controller{
         }
         $result = curl_exec($ch);
         curl_close($ch);
-        return json_decode($result,true);
-
+//        if ($res == 'json'){
+//            if (curl_error($ch)){
+//                curl_close($ch);
+//                return curl_error($ch);
+//            }else{
+//                curl_close($ch);
+//                return json_decode($result,true);
+//            }
+//        }
+         return json_decode($result,true);
      }
-     //创建微信菜单
-     public function creatmenu(){
+     //创建微信自定义菜单
+     public function createmenu(){
         $accesstoken = $this->getwxaccesstoken();
-        $url = "https://api.weixin.qq.com/cgi-bin/menu/addconditional?access_token=".$accesstoken;
+        $url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$accesstoken;
         $postArr = array(
             'button' => array(
                 array(
-                    'name' =>'菜单1',
-                    'type' =>'click',
-                    'key' =>'item1'
+                    'name' =>urlencode('京东'),
+                    'type' =>'view',
+                    'url'  =>'http://www.jd.com'
                 ),
                 array(
-                    'name' =>'菜单2',
+                    'name' =>urlencode('百度'),
                     'sub_button' =>array(
                         array(
-                            'name' =>'歌曲',
                             'type' =>'click',
-                            'key' =>'songs',
+                            'name' =>urlencode('搜索'),
+                            'key'  =>'sousuo'
                         ),
                         array(
-                            'name' =>'电影',
-                            'type' =>'view',
-                            'url' =>'http://www.jd.com',
+                            'type' =>'click',
+                            'name' =>urlencode('语音'),
+                            'key'  =>'yuyin'
                         ),
+                        array(
+                            'name' =>urlencode('游戏'),
+                            'type' =>'click',
+                            'key'  =>'youxi'
+                        )
                     ),
                 ),
-            ),
-            array(),
-            array()
+                array(
+                  'name' =>urlencode('云上长安'),
+                  'type' =>'view',
+                  'url'  =>'http://120.77.146.195'
+                ),
+            )
         );
-        $postjson = json_encode($postArr);
+        $postjson = urldecode((json_encode($postArr)));
         $result = $this->http_curl($url,'post','json',$postjson);
-        var_dump($result);
+        if($result['errcode'] == '0' && $result['errmsg'] == 'ok'){
+            return '创建自定义菜单成功';
+        }else{
+            print_r($result);
+        }
      }   
 }
