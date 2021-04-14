@@ -83,7 +83,7 @@ class Api extends Controller{
     public function retrieve(){
         if (Request()->isAjax()){
             $username = input('username');
-            $emailcode = input('emailcode');
+            $emailcode = input('vcode');
             $newpass = md5(input('newpass'));
             $c_newpass = input('c_newpass');
             $res = Db::name('userinfo')->where('username',$username)->find();

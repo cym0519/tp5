@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:76:"/usr/local/apache/htdocs/tp5/public/../application/api/view/index/index.html";i:1617439274;s:71:"/usr/local/apache/htdocs/tp5/public/../application/api/view/layout.html";i:1617439274;s:71:"/usr/local/apache/htdocs/tp5/public/../application/api/view/header.html";i:1617439274;s:71:"/usr/local/apache/htdocs/tp5/public/../application/api/view/footer.html";i:1617439273;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:76:"/usr/local/apache/htdocs/tp5/public/../application/api/view/index/index.html";i:1617603294;s:71:"/usr/local/apache/htdocs/tp5/public/../application/api/view/layout.html";i:1617439274;s:71:"/usr/local/apache/htdocs/tp5/public/../application/api/view/header.html";i:1617595845;s:71:"/usr/local/apache/htdocs/tp5/public/../application/api/view/footer.html";i:1617593124;}*/ ?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/static/api/css/fakeLoader.css">
     <link rel="stylesheet" href="/static/api/css/magnific-popup.css">
     <link rel="stylesheet" href="/static/api/css/style.css">
-    <link rel="shortcut icon" href="/static/api/img/favicon.png">
+
 
 </head>
 <body>
@@ -316,8 +316,6 @@
     <link rel="stylesheet" href="/static/api/css/fakeLoader.css">
     <link rel="stylesheet" href="/static/api/css/magnific-popup.css">
     <link rel="stylesheet" href="/static/api/css/style.css">
-
-    <link rel="shortcut icon" href="/static/api/img/favicon.png">
 
 </head>
 <body>
