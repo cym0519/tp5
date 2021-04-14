@@ -93,8 +93,8 @@ function sendmail($email,$content){
 
 }
 function mailto($email,$content){
-    \think\Loader::import('PHPMailers.phpmailer');
-    \think\Loader::import('PHPMailers.smtp');
+    \think\Loader::import('PHPMailer.phpmailer');
+    \think\Loader::import('PHPMailer.smtp');
 //    \think\Loader::import('PHPMailer.src.Exception');
     $mail = new PHPMailer();
     try {
