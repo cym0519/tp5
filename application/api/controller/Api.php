@@ -79,10 +79,28 @@ class Api extends Controller{
         }
         return view();
     }
-    //找回密码
+    //重置密码
     public function retrieve(){
         if (Request()->isAjax()){
-
+            $username = input('username');
+            $emailcode = input('emailcode');
+            $newpass = md5(input('newpass'));
+            $c_newpass = input('c_newpass');
+            $res = Db::name('userinfo')->where('username',$username)->find();
+            if ($res){
+                if ($emailcode == Session::get('email_code')){
+                    $result = Db::name('userinfo')->where('username',$username)->update(['upwd'=>$newpass]);
+                    if ($result){
+                        $this->success('重置成功','api/api/login');
+                    }else{
+                        $this->error('重置失败');
+                    }
+                }else{
+                    $this->error('验证码不正确!');
+                }
+            }else{
+                $this->error('用户名不正确!');
+            }
         }else{
             return view();
         }

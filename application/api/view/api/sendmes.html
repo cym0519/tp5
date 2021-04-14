@@ -26,11 +26,11 @@
 <div class="login-register-wrap-home">
     <div class="container">
         <div class="content">
-            <div action="" id="form">
+            <form action="" id="form">
                 <input type="text" id="email" placeholder="邮箱" name="email">
                 <input style="background-color: #4faeef; width: 100px;margin: auto;margin-top: 20px;" type="button" id="confirm" value="获取验证码">
-                <h6 style="font-size: 1em">返回登录？ <a style="color:#6fa8dc" href="{:url('api/api/login')}">登录</a></h6>
-            </div>
+                <h6>返回登录？ <a style="color:#6fa8dc" href="{:url('api/api/login')}">登录</a></h6>
+            </form>
         </div>
     </div>
 </div>
@@ -53,32 +53,24 @@
             $.ajax({
                 url:"{:url('api/api/sendmes')}",
                 type: 'post',
-                data: {'email':email},
-                dataType: "text",
+                data: $('form').serialize(),
+                dataType: "json",
                 success:function (data) {
-                    console.log(data);
-                     return false;
                     if (data.code==1){
-                        alert('1111111111111');
-                        // layer.msg(data.msg);
-                        // window.setTimeout(function () {
-                        //     window.location.href=data.url;
-                        // },2000);
+                        layer.msg(data.msg);
+                        window.setTimeout(function () {
+                            window.location.href=data.url;
+                        },2000);
                     }else{
-                        alert('2222222222222');
-                        // layer.msg(data.msg);
-                        // setTimeout(function () {
-                        //     window.location.reload();
-                        // },2000);
+                        layer.msg(data.msg);
+                        setTimeout(function () {
+                            window.location.reload();
+                        },2000);
                     }
                 },
-                error:function () {
-                    alert('44444444444444');
-                }
             })
         }
     });
-    // console.log('3333333333333333333333333');
 </script>
 </body>
 </html>

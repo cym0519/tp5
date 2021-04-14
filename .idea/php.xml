@@ -38,14 +38,11 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
       <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
       <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
-      <path value="$PROJECT_DIR$/vendor/PHPMailer/.git" />
-      <path value="$PROJECT_DIR$/vendor/PHPMailer/.github" />
-      <path value="$PROJECT_DIR$/vendor/PHPMailer/.phan" />
-      <path value="$PROJECT_DIR$/vendor/PHPMailer/docs" />
-      <path value="$PROJECT_DIR$/vendor/PHPMailer/examples" />
-      <path value="$PROJECT_DIR$/vendor/PHPMailer/language" />
-      <path value="$PROJECT_DIR$/vendor/PHPMailer/src" />
-      <path value="$PROJECT_DIR$/vendor/PHPMailer/test" />
+      <path value="$PROJECT_DIR$/vendor/captcha/src" />
+      <path value="$PROJECT_DIR$/vendor/captcha/assets" />
+      <path value="$PROJECT_DIR$/vendor/wechatpay-guzzle-middleware/tool" />
+      <path value="$PROJECT_DIR$/vendor/wechatpay-guzzle-middleware/src" />
+      <path value="$PROJECT_DIR$/vendor/wechatpay-guzzle-middleware/.git" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.4.0" />

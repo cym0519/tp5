@@ -2,13 +2,6 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <excludeFolder url="file://$MODULE_DIR$/vendor/PHPMailer/.github" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/PHPMailer/.phan" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/PHPMailer/docs" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/PHPMailer/examples" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/PHPMailer/language" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/PHPMailer/src" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/PHPMailer/test" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />

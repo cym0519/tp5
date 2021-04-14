@@ -29,39 +29,99 @@ function curl_get($url, &$httpCode = 0){
     return $file_contents;
 }
 //邮件发送
-function mailto($to,$title,$content){
-//    import('PHPMailer.src.PHPMailer',VENDOR_PATH,'.php');
-    import('PHPMailer.src.SMTP',VENDOR_PATH,'.php');
-    import('PHPMailer.src.Exception',VENDOR_PATH,'.php');
+function sendmail($email,$content){
+    \think\Loader::import('PHPMailer.src.PHPMailer');//加载extend中的自定义类
+    \think\Loader::import('PHPMailer.src.SMTP');
+    \think\Loader::import('PHPMailer.src.Exception');
     $mail = new \PHPMailer\PHPMailer\PHPMailer();
+    try {
+        header("content-type:text/html;charset=utf-8");
+        // 使用SMTP方式发送
+        $mail->IsSMTP();
+        // 设置邮件的字符编码
+        $mail->CharSet='UTF-8';
+        // 企业邮局域名
+        $mail->Host = 'smtp.qq.com';
+        //---------qq邮箱需要的------//设置使用ssl加密方式登录鉴权
+        $mail->SMTPSecure = 'ssl';
+        //设置ssl连接smtp服务器的远程服务器端口号 可选465或587
+        $mail->Port = 587;//---------qq邮箱需要的------
+        // 启用SMTP验证功能
+        $mail->SMTPAuth = true;
+        //邮件发送人的用户名(请填写完整的email地址)
+        $mail->Username = '986306442@qq.com' ;
+        // 邮件发送人的 密码 （授权码）
+        $mail->Password = 'bnyjmfubnebhbfca';  //修改为自己的授权码
+        //邮件发送者email地址
+        $mail->From ="986306442@qq.com";
+        //发送邮件人的标题
+        $mail->FromName ="123456789@qq.com";
+        //收件人的邮箱 给谁发邮件
+        $email_addr = $email;
+        //收件人地址，可以替换成任何想要接收邮件的email信箱,格式是AddAddress("收件人email","收件人姓名")
+        $mail->AddAddress("$email_addr", substr(  $email_addr, 0 , strpos($email_addr ,'@')));
+        //回复的地址
+        $mail->AddReplyTo('986306442@qq.com' , "" );
+        $mail->AddAttachment("./mail.rar"); // 添加附件
+        //set email format to HTML //是否使用HTML格式
+        $mail->IsHTML(true);
+        //邮件标题
+        $mail->Subject = '验证码';
+        //邮件内容
+        $mail->Body =  "<p style='color:#ff0000'>" . $content . '</p>';
+        //附加信息，可以省略
+        $mail->AltBody = '';
+        // 添加附件,并指定名称
+        $mail->AddAttachment( './error404.php' ,'php文件');
+        //设置邮件中的图片
+        $mail->AddEmbeddedImage("shuai.jpg", "my-attach", "shuai.jpg");
+        if( !$mail->Send() ){
+                $mail_return_arr['mark'] = false ;
+            $str  =  "邮件发送失败. <p>";
+            $str .= "错误原因: " . $mail->ErrorInfo;
+            $mail_return_arr['info'] = $str ;
+        }else{
+            $mail_return_arr['mark'] = true ;
+            $str =  "邮件发送成功";
+            $mail_return_arr['info'] = $str ;
+        }
+        echo "<pre>";
+        print_r( $mail_return_arr);
+    }catch (Exception $exception){
+        \exception($mail->ErrorInfo, '100');
+    }
 
+}
+function mailto($email,$content){
+    \think\Loader::import('PHPMailers.phpmailer');
+    \think\Loader::import('PHPMailers.smtp');
+//    \think\Loader::import('PHPMailer.src.Exception');
+    $mail = new PHPMailer();
     try {
         //Server settings
         $mail->SMTPDebug = 0;                      //Enable verbose debug output
         $mail->CharSet = 'utf-8';
         $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host = 'smtp.163.com';                     //Set the SMTP server to send through
+        $mail->Host = 'smtp.qq.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth = true;                                   //Enable SMTP authentication
-        $mail->Username = 'cc6619148025@163.com';                     //SMTP username
-        $mail->Password = '45098119940519';                               //SMTP password
+        $mail->Username = '986306442@qq.com';                     //SMTP username
+        $mail->Password = 'bnyjmfubnebhbfca';                               //SMTP password
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;                                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS`
         // above
-
         //Recipients
-        $mail->setFrom('cc6619148025@163.com', 'cym');
-        $mail->addAddress($to);     //Add a recipient
+        $mail->setFrom('986306442@qq.com', 'cym');
+        $mail->addAddress($email);     //Add a recipient
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = $title;
+        $mail->Subject = '验证码';
         $mail->Body = $content;
 
         return $mail->send();
-//        echo 'Message has been sent';
-    } catch (Exception $e) {
-//        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }catch (Exception $e){
         \exception($mail->ErrorInfo, '100');
     }
+
 }
 //获取天气预报
 function weatherdata($city){
