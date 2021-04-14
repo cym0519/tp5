@@ -1,0 +1,84 @@
+{__NOLAYOUT__}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1  maximum-scale=1 user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="HandheldFriendly" content="True">
+
+    <link rel="stylesheet" href="/static/api/css/materialize.css">
+    <link rel="stylesheet" href="/static/api/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/api/css/normalize.css">
+    <link rel="stylesheet" href="/static/api/css/owl.carousel.css">
+    <link rel="stylesheet" href="/static/api/css/owl.theme.css">
+    <link rel="stylesheet" href="/static/api/css/owl.transitions.css">
+    <link rel="stylesheet" href="/static/api/css/fakeLoader.css">
+    <link rel="stylesheet" href="/static/api/css/style.css">
+
+    <link rel="shortcut icon" href="/static/api/img/favicon.png">
+
+</head>
+<body class="login-register-wrap">
+
+<!-- login register -->
+<div class="login-register-wrap-home">
+    <div class="container">
+        <div class="content">
+            <div action="" id="form">
+                <input type="text" id="email" placeholder="邮箱" name="email">
+                <input style="background-color: #4faeef; width: 100px;margin: auto;margin-top: 20px;" type="button" id="confirm" value="获取验证码">
+                <h6 style="font-size: 1em">返回登录？ <a style="color:#6fa8dc" href="{:url('api/api/login')}">登录</a></h6>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end login register -->
+
+<!-- scripts -->
+<script src="/static/api/js/jquery.min.js"></script>
+<script src="/static/api/js/materialize.min.js"></script>
+<script src="/static/api/js/owl.carousel.min.js"></script>
+<script src="/static/api/js/contact-form.js"></script>
+<script src="/static/api/js/fakeLoader.min.js"></script>
+<script src="/static/api/js/main.js"></script>
+<script src="/static/layui/layui.js"></script>
+<script type="text/javascript">
+    $('#confirm').click(function () {
+        var email = $('#email').val();
+        if (email == ''){
+            layer.msg('请输入邮箱');
+        }else{
+            $.ajax({
+                url:"{:url('api/api/sendmes')}",
+                type: 'post',
+                data: {'email':email},
+                dataType: "text",
+                success:function (data) {
+                    console.log(data);
+                     return false;
+                    if (data.code==1){
+                        alert('1111111111111');
+                        // layer.msg(data.msg);
+                        // window.setTimeout(function () {
+                        //     window.location.href=data.url;
+                        // },2000);
+                    }else{
+                        alert('2222222222222');
+                        // layer.msg(data.msg);
+                        // setTimeout(function () {
+                        //     window.location.reload();
+                        // },2000);
+                    }
+                },
+                error:function () {
+                    alert('44444444444444');
+                }
+            })
+        }
+    });
+    // console.log('3333333333333333333333333');
+</script>
+</body>
+</html>

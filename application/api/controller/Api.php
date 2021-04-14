@@ -79,7 +79,6 @@ class Api extends Controller{
         }
         return view();
     }
-
     //找回密码
     public function retrieve(){
         if (Request()->isAjax()){
@@ -95,15 +94,21 @@ class Api extends Controller{
     }
     //邮箱发送
     public function sendmes(){
-        if (\request()->isAjax()){
+        if (Request()->isAjax()){
              $data=[
                  'email' =>input('email'),
              ];
-             if (mailto($data['email'],'验证码',$this->mescontent())){
-                 $this->success('发送成功');
+             $email = $data['email'];
+             $content = $this->mescontent();
+             $res = mailto($email,$content);
+             if ($res == 1){
+                 Session::set('email_code',$content);
+                 $this->success('发送成功','api/api/retrieve');
              }else{
                  $this->error('发送失败');
              }
+        }else{
+            return view();
         }
     }
     public function test(){
