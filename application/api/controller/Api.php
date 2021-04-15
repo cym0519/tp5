@@ -149,7 +149,7 @@ class Api extends Controller{
         print_r($arr);
 
     }
-
+    //测试代码
     public function database(){
         $data=new IndexModel();
         $uid=422;
@@ -164,20 +164,7 @@ class Api extends Controller{
         $qq=$request->domain();
 //        echo $qq;
     }
-
-
-    public function logins(){
-        $data='qwer';
-        $result=new IndexModel();
-        try {
-            $res = $result->getdata($data);
-        } catch (Exception $e) {
-        }
-
-        return $res;
-//        return view();
-        
-    }
+    //测试代码
     public function getdata(){
         $rule = [
             'name'  => 'require|max:10',
@@ -218,7 +205,7 @@ class Api extends Controller{
             $this->responseMsg();
         }
     }
-    //
+    //微信
     public function valid(){
         $echostr = $_GET["echostr"];
         if ($this->checkSignature()) {
