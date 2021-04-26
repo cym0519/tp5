@@ -239,7 +239,7 @@ class Api extends Controller{
         //处理消息类型，并设置回复类型和内容
         // $postObj = simplexml_load_string($postArr);
         $postObj = simplexml_load_string($postArr,'SimpleXMLElement',LIBXML_NOCDATA);
-        $keyword = trim($postObj->Content);
+        // $keyword = trim($postObj->Content);
         //判断该数据包是否是订阅的事件推送
         if(strtolower($postObj->MsgType) == 'event'){
             //如果是关注 subscribe 事件
@@ -248,19 +248,6 @@ class Api extends Controller{
             }
         }else if ( strtolower($postObj->MsgType == 'text') && trim($postObj->Content) == '图片') {
             echo $this->image($postObj);
-        }else if( strtolower(($postObj->Event) == 'click')){
-            if (strtolower($postObj->EventKey) == 'sousuo'){
-                $content = '这是搜索菜单的事件推送';
-                echo $this->test($postObj,$content);
-            }
-            if (strtolower($postObj->EventKey) == 'yuyin'){
-                $content = '这是语音菜单的事件推送';
-                echo $this->test($postObj,$content);
-            }
-            if (strtolower($postObj->EventKey) == 'youxi'){
-                $content = '这是游戏菜单的事件推送';
-                echo $this->test($postObj,$content);
-            }
         }else{
             echo $this->text($postObj);
         }
@@ -283,10 +270,11 @@ class Api extends Controller{
         return sprintf($template,$toUser,$fromUser,$time,$msgType,$content);
     }
     //文本回复
-    public function text($postObj,$content){
+    public function text($postObj){
+        $data = ['东莞仔','跨栏哥','加钱哥','大D','吉米仔','阿乐'];
         switch ( trim($postObj->Content)) {
-            case '陈焕';
-                $content = '颠佬正传';
+            case '1';
+                $content = $data[rand(0,count($data)-1)];
                 break;
             case 'tel';
                 $content = '15677135691';
@@ -294,7 +282,7 @@ class Api extends Controller{
             case 'php';
                 $content = 'php是世界上最好的编程语言';
                 break;
-            case "？";
+            case "时间";
                 $content = date("Y-m-d H:i:s",time());
                 break;
             case trim($postObj->Content):
