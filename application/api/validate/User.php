@@ -8,6 +8,6 @@ class User extends Validate
 {
     protected $rule=[
         'username' =>'require|max:10',
-        'upwd' =>'require|max:32'
+        'password' =>'require|max:32'
     ];
 }

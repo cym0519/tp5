@@ -34,7 +34,7 @@ class Api extends Controller{
         if(request()->isAjax()){
             $data=[
                 'username' =>input('username'),
-                'upwd' =>md5(input('password')),
+                'password' =>md5(input('password')),
             ];
             $code=trim(input('vcode'));
             if (!captcha_check($code)){
@@ -42,7 +42,7 @@ class Api extends Controller{
                 return false;
             }
             if($validata->check($data)){
-                $res=Db::name('userinfo')->where($data)->find();
+                $res=Db::name('user')->where($data)->find();
                 if ($res){
                     Session::set('name',$data['username']);
                     $this->success('登录成功','api/index/index');
@@ -60,14 +60,14 @@ class Api extends Controller{
         if (Request()->isAjax()){
             $data=[
                 'username' => input('username'),
-                'upwd' => md5(input('password'))
+                'password' => md5(input('password'))
             ];
-            $res=Db::name('userinfo')->where('username',$data['username'])->find();
+            $res=Db::name('user')->where('username',$data['username'])->find();
 //            print_r($res);exit();
             if ($res !=''){
                 $this->error('注册失败,用户名已存在');
             }else{
-                $result=Db::name('userinfo')->insert($data);
+                $result=Db::name('user')->insert($data);
                 if ($result==1){
                     $this->success('成功注册!','api/api/login');
                 }else{
@@ -84,10 +84,10 @@ class Api extends Controller{
             $emailcode = input('vcode');
             $newpass = md5(input('newpass'));
             $c_newpass = input('c_newpass');
-            $res = Db::name('userinfo')->where('username',$username)->find();
+            $res = Db::name('user')->where('username',$username)->find();
             if ($res){
                 if ($emailcode == Session::get('email_code')){
-                    $result = Db::name('userinfo')->where('username',$username)->update(['upwd'=>$newpass]);
+                    $result = Db::name('user')->where('username',$username)->update(['password'=>$newpass]);
                     if ($result){
                         $this->success('重置成功','api/api/login');
                     }else{

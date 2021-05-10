@@ -25,7 +25,7 @@ return [
     // 是否支持多模块
     'app_multi_module'       => true,
     // 入口自动绑定模块
-    'auto_bind_module'       => true,
+    'auto_bind_module'       => false,
     // 注册的根命名空间
     'root_namespace'         => [],
     // 扩展函数文件
@@ -56,13 +56,13 @@ return [
     // +----------------------------------------------------------------------
 
     // 默认模块名
-    'default_module'         => 'api',
+    'default_module'         => 'index',
     // 禁止访问模块
     'deny_module_list'       => ['common'],
     // 默认控制器名
-    'default_controller'     => 'api',
+    'default_controller'     => 'index',
     // 默认操作名
-    'default_action'         => 'login',
+    'default_action'         => 'index',
     // 默认验证器
     'default_validate'       => '',
     // 默认的空控制器名
@@ -91,11 +91,11 @@ return [
     // 是否开启路由
     'url_route_on'           => true,
     // 路由使用完整匹配
-    'route_complete_match'   => false,
+    'route_complete_match'   => true,
     // 路由配置文件（支持配置多个）
     'route_config_file'      => ['route'],
     // 是否强制使用路由
-    'url_route_must'         => false,
+    'url_route_must'         => true,
     // 域名部署
     'url_domain_deploy'      => false,
     // 域名根，如thinkphp.cn
@@ -137,7 +137,7 @@ return [
         // 标签库标签结束标记
         'taglib_end'   => '}',
         //开启模板布局
-        'layout_on'    => true,
+        'layout_on'    => false,
         //模板文件名
         'layout_name'  =>'layout'
     ],

@@ -13,7 +13,7 @@
 // if (is_file($_SERVER["DOCUMENT_ROOT"] . $_SERVER["REQUEST_URI"])) {
 //     return false;
 // } else {
-//     require __DIR__ . "/api.php";
+//     require __DIR__ . "/index.php";
 // }
 Route::group('api',function(){
     Route::rule('login','api/api/login','get | post');

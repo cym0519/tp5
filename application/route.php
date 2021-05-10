@@ -9,7 +9,7 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-    use think\Route;
+use think\Route;
 Route::group('admin',function (){
     Route::rule('/','admin/user/login','get|post');
     Route::rule('index','admin/index/index','get|post');
@@ -23,3 +23,10 @@ Route::group('admin',function (){
     Route::rule('articleedit/[:id]','admin/article/articleedit','get|post');
     Route::rule('articledel','admin/article/articledel','post');
 });
+    Route::rule('getweather','api/index/getweather','get|post');
+    Route::rule('today','api/index/today','get|post');
+    Route::rule('index','api/index/index','get|post');
+    Route::rule('logout','api/api/logout','get|post');
+    Route::rule('retrieve','api/api/retrieve','get|post');
+    Route::rule('register','api/api/register','get|post');
+    Route::rule('/','api/api/login','get|post');
