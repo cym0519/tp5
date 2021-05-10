@@ -1,4 +1,7 @@
 <?php
 return[
-    'app_cym' =>'hello'
+    'template'  =>  [
+        'layout_on'     =>  true,
+        'layout_name'   =>  'layout',
+    ],
 ];
