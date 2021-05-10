@@ -1,0 +1,36 @@
+{extend name='base' /}
+{block name='title'}
+{$class.fclass|default='PHP程序员'}
+{/block}
+{block name='content'}
+<div class="row">
+    <div class="col-sm-12 col-md-8">
+        <div class="page-header h3">{$class.fclass|default='文章'}列表</div>
+        <div class="article-list">
+            {volist name='cat' id='vo'}
+            <div class="article-list-item">
+                <a href="{:url('index/index/detail',['nid'=>$vo.nid])}" class="title">{$vo.ntitle}</a>
+                <div class="info">
+                    <span class="author">作者：赏金</span>
+                    <span class="time">发表时间：{$vo.ntime|date='y-m-d h:i:s',###}</span>
+                    <span class="read">阅读：1000</span>-
+                    <span class="comment">评论：1K</span>
+                </div>
+            </div>
+            {/volist}
+        </div>
+        <nav class="">
+            {$cat->render()}
+        </nav>
+    </div>
+    <div class="col-sm-12 col-md-4">
+        <div class="page-header h3">推荐文章</div>
+        <div class="topic-list">
+            <div class="topic-list-item">
+                <a href="#" class="title">数据库学习简单教程（递归的应用）（一）</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}

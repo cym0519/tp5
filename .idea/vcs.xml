@@ -4,5 +4,6 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/extend/PHPMailer" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/extend/PHPMailers" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/extend/jwt" vcs="Git" />
   </component>
 </project>

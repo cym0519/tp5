@@ -1,15 +1,15 @@
 <?php
 namespace app\admin\controller;
+use think\Controller;
+use think\Db;
+use think\Loader;
+use think\Session;
 
-class Index {
-    public function login(){
-        if (request()->isAjax()){
-            $data=[
-                'username' =>input('username'),
-                'password' =>input('password')
-            ];
-            print_r($data);exit();
-        }
-        return view();
+class Index extends Base {
+
+    //首页
+    public function index(){
+        return $this->fetch('index');
     }
+
 }

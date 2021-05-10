@@ -1,0 +1,86 @@
+{extend name='base' /}
+{block name='content'}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-8">
+            <h1 class="article-title">{$list.ntitle}</h1>
+            <div class="status">作者：
+                <span class="label label-default">PHP</span>
+                <span class="label label-default">ThinkPHP</span>
+            </div>
+            <div class="article-content">
+                <blockquote>
+                    文章的简要信息
+                </blockquote>
+                {$list.ncontent}
+            </div>
+            <div class="article-comment">
+                <div class="page-header"><b>相关评论</b></div>
+                <div class="comment-content">
+                    <form action="#">
+                        <input type="hidden" name="nid" value="{$list.nid}">
+                        <input type="hidden" name="uid" value="{:session('uid')}">
+                        <input type="hidden" name="name" value="{:session('name')}">
+                        <div class="form-group">
+                            <textarea class="form-control" id="comment" name="content" rows="5" cols=""></textarea>
+                        </div>
+                        <div class="form-group pull-right">
+                            <button type="button" id="commit" class="btn btn-primary">评论（请认真评论）</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+                <div class="comment-list">
+                    {volist name='res' id='vo'}
+                    <div class="comment-list-item">
+                        <div class="info">{$vo.username}<small>{$vo.time|date="Y-m-d H:i:s",###}</small></div>
+                        <div class="content">{$vo.content}</div>
+                    </div>
+                    {/volist}
+                </div>
+                {$res->render()}
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name='js'}
+<script src="/static/index/js/jquery-3.3.1.min.js"></script>
+<script src="/static/index/js/bootstrap.min.js"></script>
+<script src="/static/layui/layui.js"></script>
+<script>
+    $(function () {
+        $('#commit').click(function () {
+            $.ajax({
+                url:"{:url('index/index/commit')}",
+                data:$('form').serialize(),
+                dataType:'json',
+                type:'post',
+                success:function (data) {
+                    if (data.code == 1){
+                        layer.msg(data.msg,{
+                            icon: 6,
+                            time: 3000,
+                        },function () {
+                            location.reload();
+                        });
+                    }else {
+                        layer.open({
+                            title:'评论失败',
+                            content:data.msg,
+                            icon: 6,
+                            time: 3000
+                        })
+                    }
+                }
+            })
+        });
+    })
+    function show() {
+        document.getElementById("time").innerHTML = new Date().toLocaleString();
+        window.setTimeout( Show, 1000 );
+    }
+    show();
+</script>
+{/block}

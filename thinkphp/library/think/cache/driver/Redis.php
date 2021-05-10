@@ -173,4 +173,8 @@ class Redis extends Driver
         return $this->handler->flushDB();
     }
 
+    public function zRem($string, $string1, $id)
+    {
+    }
+
 }

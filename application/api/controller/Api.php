@@ -23,9 +23,7 @@ class Api extends Controller{
         }else{
             $this->redirect('api/api/login');
         }
-
     }
-
     //用户登录
     public function login(){
         if (session('?name')){
@@ -164,7 +162,7 @@ class Api extends Controller{
         $qq=$request->domain();
 //        echo $qq;
     }
-    //测试代码
+    //验证测试代码
     public function getdata(){
         $rule = [
             'name'  => 'require|max:10',
@@ -271,7 +269,7 @@ class Api extends Controller{
     }
     //文本回复
     public function text($postObj){
-        $data = ['东莞仔','跨栏哥','加钱哥','大D','吉米仔','阿乐'];
+        $data = ['东莞仔','跨栏哥','加钱哥','不戴头盔的大D','吉米仔','我选阿乐做话事人'];
         switch ( trim($postObj->Content)) {
             case '1';
                 $content = $data[rand(0,count($data)-1)];

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>用户登录</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/static/index/favicon.ico" />
+    <link rel="stylesheet" href="/static/index/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/index/css/animate.css" />
+    <link rel="stylesheet" href="/static/index/css/index.css" />
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menu">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="{:url('index/index/index')}" class="navbar-brand">PHP程序员</a>
+        </div>
+        <div class="navbar-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="{:url('index/index/index')}">首页</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{:url('index/index/register')}">注册</a></li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="content center-block animated fadeInDown">
+        <div class="page-header h1">用户登录</div>
+        <form action="#">
+            <div class="form-group">
+                <label for="username" class="control-label">用户名</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="用户名" />
+            </div>
+            <div class="form-group">
+                <label for="password" class="control-label">密码</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="密码" />
+            </div>
+            <div class="form-group">
+                <label for="verify" class="control-label">验证码</label>
+                <div class="input-group">
+                    <input style="width:200px" type="text" class="form-control" id="verify" name="verify" placeholder="验证码" />
+                    <img style="margin-left: 20px; height: 30px; width: 30%; float: left"; src="{:captcha_src()}" class="verifyimg" alt="captcha">
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" id="login" type="button">登录</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<script src="/static/index/js/jquery-3.3.1.min.js"></script>
+<script src="/static/index/js/bootstrap.min.js"></script>
+<script src="/static/layui/layui.js"></script>
+<script>
+    $(function () {
+        var verifyimg=$('.verifyimg').attr("src");
+        $('.verifyimg').click(function () {
+            if (verifyimg.indexOf('?')>0){
+                $('.verifyimg').attr('src',verifyimg+'&random'+Math.random());
+            }else {
+                $('.verifyimg').attr('src',verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+            }
+        });
+    })
+    //登录
+    $(function () {
+        $('#login').click(function () {
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var code = $('#verify').val();
+            if (username == '') {
+                layer.msg('请输入用户名');
+            } else if (password == '') {
+                layer.msg('请输入密码');
+            } else if (code == '') {
+                layer.msg('请输入验证码');
+            } else {
+            $.ajax({
+                url: "{:url('index/index/login')}",
+                data: $('form').serialize(),
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    if (data.code == 1) {
+                        layer.msg(data.msg);
+                        setTimeout(function () {
+                            window.location.href = data.url;
+                        }, 3000);
+                    } else {
+                        layer.msg(data.msg);
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 2000);
+                    }
+                }
+            })
+        }
+        });
+    })
+</script>
+</body>
+</html>

@@ -10,13 +10,16 @@
 // +----------------------------------------------------------------------
 
     use think\Route;
-//
-//    Route::rule('api','api/api/api');
-//    Route::rule('login','api/api/login');
-//    Route::rule('getdata','api/api/getdata');
-//    Route::rule('weatherdata','api/api/weatherdata');
-//    Route::rule('database','api/api/database');
-//    Route::rule('getinfo','api/api/getinfo');
-//    Route::rule('test','api/api/test');
-//    Route::rule('registered','api/api/registered');
-
+Route::group('admin',function (){
+    Route::rule('/','admin/user/login','get|post');
+    Route::rule('index','admin/index/index','get|post');
+    Route::rule('loginout','admin/user/loginout','post');
+    Route::rule('catelist','admin/cate/catelist','get|post');
+    Route::rule('cateadd','admin/cate/cateadd','get|post');
+    Route::rule('cateedit/[:id]','admin/cate/cateedit','get|post');
+    Route::rule('catedel','admin/cate/catedel','get|post');
+    Route::rule('articlelist','admin/article/articlelist','get|post');
+    Route::rule('articleadd','admin/article/articleadd','get|post');
+    Route::rule('articleedit/[:id]','admin/article/articleedit','get|post');
+    Route::rule('articledel','admin/article/articledel','post');
+});
