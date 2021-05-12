@@ -32,7 +32,7 @@
 <div class="section we-are" style="margin-top: 50px" >
     <div class="container">
         <div class="section-head">
-            <h4>{$data.city}的天气预报</h4>
+            <h4>天气预报</h4>
         </div>
     </div>
 </div>
@@ -43,10 +43,22 @@
     <div class="container">
         <div class="row">
             <div class="">
+	{if empty($data)}
+	<form action="{:url('api/index/weather')}" method="post">
+	<div class="content">
+	<input type="text" name="city_name" placeholder="请输入城市名">
+	<button type="submit">查询</button>
+	</div>
+	</form>
+	{else /}
                 <div class="content">
-                    <h5>{$date.dataUpatime|date='y-m-d H:i:s',###}</h5>
-                    <p>{$data}</p>
+	    <h5>{$data.city_name}</h1>
+                    <h5>更新时间：{$data.dataUptime|date='y-m-d H:i:s',###}</h5>
+                    <p>天气：{$data.weather.info}</p>
+	    <p>温度：{$data.weather.temperature}</p>
+	    <p>风向：{$data.wind.direct}</p>
                 </div>
+	{/if}
             </div>
         </div>
     </div>

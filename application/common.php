@@ -77,10 +77,9 @@ function weatherdata($city){
     $result = json_decode($content,true);
     if($result){
         if($result['error_code']=='0'){
-            $data=$result['result'];
-            return $data['data']['realtime'];
+            return $result;
         }else{
-            return $result['error_code'].":".$result['reason'];
+            return $result['error_code'];
         }
     }else{
         echo "请求失败";
