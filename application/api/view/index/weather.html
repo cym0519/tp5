@@ -1,10 +1,79 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>天气详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1  maximum-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="HandheldFriendly" content="True">
+
+    <link rel="stylesheet" href="/static/api/css/materialize.css">
+    <link rel="stylesheet" href="/static/api/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/api/css/normalize.css">
+    <link rel="stylesheet" href="/static/api/css/owl.carousel.css">
+    <link rel="stylesheet" href="/static/api/css/owl.theme.css">
+    <link rel="stylesheet" href="/static/api/css/owl.transitions.css">
+    <link rel="stylesheet" href="/static/api/css/fakeLoader.css">
+    <link rel="stylesheet" href="/static/api/css/magnific-popup.css">
+    <link rel="stylesheet" href="/static/api/css/style.css">
+
+    <link rel="shortcut icon" href="/static/api/img/favicon.png">
+
 </head>
 <body>
-    <td></td>
+<!-- slider -->
+<!--<div class="slider">-->
+
+<!--</div>-->
+<!-- end slider -->
+
+<!-- we are -->
+<div class="section we-are" style="margin-top: 50px" >
+    <div class="container">
+        <div class="section-head">
+            <h4>{$data.city}的天气预报</h4>
+        </div>
+    </div>
+</div>
+<!-- and we are -->
+
+<!-- features -->
+<div class="section features bg-second">
+    <div class="container">
+        <div class="row">
+            <div class="">
+                <div class="content">
+                    <h5>{$date.dataUpatime|date='y-m-d H:i:s',###}</h5>
+                    <p>{$data}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end features -->
+
+<!-- home portfolio -->
+<div class="section">
+</div>
+<!-- end home portfolio -->
+
+<!-- loader -->
+<div id="fakeLoader"></div>
+<!-- end loader -->
+
+
+
+<!-- scripts -->
+<script src="/static/api/js/jquery.min.js"></script>
+<script src="/static/api/js/materialize.min.js"></script>
+<script src="/static/api/js/owl.carousel.min.js"></script>
+<script src="/static/api/js/jquery.filterizr.js"></script>
+<script src="/static/api/js/jquery.magnific-popup.min.js"></script>
+<script src="/static/api/js/portfolio.js"></script>
+<script src="/static/api/js/contact-form.js"></script>
+<script src="/static/api/js/fakeLoader.min.js"></script>
+<script src="/static/api/js/main.js"></script>
+<script src="/static/layui/layui.js"></script>
 </body>
 </html>
