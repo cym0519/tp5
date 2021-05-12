@@ -22,8 +22,13 @@ Route::group('admin',function (){
     Route::rule('articleadd','admin/article/articleadd','get|post');
     Route::rule('articleedit/[:id]','admin/article/articleedit','get|post');
     Route::rule('articledel','admin/article/articledel','post');
+    Route::rule('customerlist','admin/customer/customerlist','get|post');
+    Route::rule('customeredit/[:id]','admin/customer/customeredit','get|post');
+    Route::rule('customeradd','admin/customer/customeradd','get|post');
+    Route::rule('customerdel','admin/customer/customerdel','get|post');
 });
-    Route::rule('getweather','api/index/getweather','get|post');
+    Route::rule('weather','api/index/weather','get|post');
+    Route::rule('getip','api/index/getip','get|post');
     Route::rule('today','api/index/today','get|post');
     Route::rule('index','api/index/index','get|post');
     Route::rule('logout','api/api/logout','get|post');

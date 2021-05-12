@@ -14,6 +14,7 @@ class Article extends Model
     //关联栏目模型
     public function cate(){
         return $this->hasOne('Cate','id','cate_id');
+//        return $this->belongsTo('Cate','cate_id','id');
     }
     //添加
     public function add($data){

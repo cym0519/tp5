@@ -41,13 +41,14 @@ class Index extends Controller
         return $this->view->fetch('shop');
     }
     //获取天气情况
-    public function getweather(){
+    public function weather(){
 //        $ip='116.11.100.166';
         $ip=$this->getip();
         $city=ipaddr($ip);
         $result=weatherdata($city);
-        print_r($result);
-
+        print_r($result);die();
+        $this->assign('data',$result);
+        return view();
     }
     //获取ip地址
     public function getip(){
