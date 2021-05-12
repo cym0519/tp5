@@ -42,17 +42,13 @@ class Index extends Controller
     }
     //获取天气情况
     public function weather(){
-        if (\request()->isPost()) {
-            // $ip=$this->getip();
-            // $city=ipaddr($ip);
-            $city = input('post.city_name');
-            $res=weatherdata($city);
-            if($res['result'] != ''){
-                $data = $res['result'];
-                $result = $data['data']['realtime'];
-            }else{
-                $result = '';
-            }
+        $ip=$this->getip();
+        // $city=ipaddr($ip);
+        $city = '';
+        $res=weatherdata($city);
+        if($res['result'] != ''){
+            $data = $res['result'];
+            $result = $data['data']['realtime'];
         }else{
             $result = '';
         }
@@ -63,6 +59,15 @@ class Index extends Controller
     public function search(){
         $city = input('post.city_name');
         $res=weatherdata($city);
+        // print_r($city);die();
+        if($res['result'] != ''){
+            $data = $res['result'];
+            $result = $data['data']['realtime'];
+        }else{
+            $result = '';
+        }
+        $this->assign('data',$result);
+        return view('weather');
     }
     //获取ip地址
     public function getip(){
