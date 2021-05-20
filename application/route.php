@@ -29,6 +29,7 @@ Route::group('admin',function (){
 });
     Route::rule('weather','api/index/weather','get|post');
     Route::rule('getip','api/index/getip','get|post');
+    Route::rule('contact','api/index/contact','get|post');
     Route::rule('today','api/index/today','get|post');
     Route::rule('index','api/index/index','get|post');
     Route::rule('logout','api/api/logout','get|post');

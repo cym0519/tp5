@@ -26,26 +26,23 @@
 	<div class="pages section">
 		<div class="container">
 			<div class="pages-head">
-				<h3>CONTACT US</h3>
+				<h3>联系我们</h3>
 			</div>
 			<div class="contact-us">
 				<div class="row">
 					<div class="col s12">
 						<form action="send-mail.php" class="contact-form" id="contact-form" method="post">
 							<div class="form-group" id="name-field">
-								<input type="text" class="validate" id="form-name" name="form-name" placeholder="Name" required>
+								<input type="text" class="validate" id="form-name" name="nickname" placeholder="昵称" required>
 							</div>
 							<div class="form-group" id="email-field">
-								<input type="email" class="validate" id="form-email" name="form-email" placeholder="Email" required>
-							</div>
-							<div class="form-group" id="subject-field">
-								<input type="text" class="validate" id="form-subject" name="form-subject" placeholder="Subject" required>
+								<input type="email" class="validate" id="form-email" name="email" placeholder="邮箱" required>
 							</div>
 							<div class="form-group" id="message-field">
-								<textarea name="form-message" id="form-message" cols="30" rows="10" class="materialize-textarea" placeholder="Your Message" required></textarea>
+								<textarea name="content" id="form-message" cols="30" rows="10" class="materialize-textarea" placeholder="留言信息" required></textarea>
 							</div>
 							<div class="form-group">
-								<button class="button-default" type="submit" id="submit" name="submit">SEND MESSAGE</button>
+								<button class="button-default" type="button" id="submit">提交</button>
 							</div>
 						</form>
 					</div>
@@ -61,6 +58,28 @@
 	<script src="/static/api/js/fakeLoader.min.js"></script>
 	<script src="/static/api/js/contact-form.js"></script>
 	<script src="/static/api/js/main.js"></script>
+<script>
+	$(function () {
+		$('#submit').click(function () {
+			$.ajax({
+				url:"{:url('api/index/contact')}",
+				type:'post',
+				dataType:'json',
+				data:$('form').serialize(),
+				success:function (data) {
+					if (data.code == 1){
+						layer.msg(data.msg);
+						setTimeout(function () {
+							location.href = data.url;
+						},3000)
+					}else {
+						layer.msg(data.msg);
+					}
+				}
+			})
+		});
+	});
+</script>
 
 </body>
 </html>

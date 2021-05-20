@@ -43,22 +43,26 @@
     <div class="container">
         <div class="row">
             <div class="">
-	{if empty($data)}
-	<form action="{:url('api/index/search')}" method="post">
-	<div class="content">
-	<input type="text" name="city_name" placeholder="请输入城市名">
-	<button type="submit">查询</button>
-	</div>
-	</form>
-	{else /}
-                <div class="content">
-	    <h5>{$data.city_name}</h1>
-                    <h5>更新时间：{$data.dataUptime|date='y-m-d H:i:s',###}</h5>
-                    <p>天气：{$data.weather.info}</p>
-	    <p>温度：{$data.weather.temperature}</p>
-	    <p>风向：{$data.wind.direct}</p>
-                </div>
-	{/if}
+	            {if empty($data)}
+	                <form action="{:url('api/index/search')}" method="post">
+	                <div class="content">
+	                    <input type="text" name="city_name" placeholder="请输入城市名">
+                        <button type="submit" style="background-color: #01AAED; color: #0b0b0b">查询</button>
+	                </div>
+	                </form>
+	                {else /}
+                    <div class="content">
+                        <form action="{:url('api/index/search')}" method="post">
+                        <input type="text" name="city_name" placeholder="请输入城市名">
+                        <button type="submit" style="background-color: #01AAED; color: #0b0b0b">查询</button>
+                        </form>
+	                    <h5 style="margin-top: 10px">{$data.city_name}</h5>
+                        <h5>更新时间：{$data.dataUptime|date='y-m-d H:i:s',###}</h5>
+                        <p>天气：{$data.weather.info}</p>
+	                    <p>温度：{$data.weather.temperature}</p>
+	                    <p>风向：{$data.wind.direct}</p>
+                    </div>
+	                {/if}
             </div>
         </div>
     </div>

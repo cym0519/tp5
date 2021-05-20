@@ -20,10 +20,16 @@
                     <div class="widget-header">
                         <span class="widget-caption">会员列表</span>
                         <div class="widget-buttons">
-                            {$members->render()}
+
                         </div>
                     </div>
                     <div class="widget-body">
+                        <form action="{:url('admin/customer/customerlist')}" method="post">
+                        <div style="margin: auto; width: 600px; text-align: center">
+                            <input placeholder="请输入用户名" style="height: 30px; margin: 10px; border: 1px solid #d0dde9" name="username">
+                            <button>搜索</button>
+                        </div>
+                        </form>
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
@@ -36,6 +42,7 @@
                                 <th>操作</th>
                             </tr>
                             </thead>
+                            {if count($members) gt 1}
                             <tbody>
                             {volist name="members" id="vo"}
                             <tr>
@@ -52,11 +59,33 @@
                             </tr>
                             {/volist}
                             </tbody>
+                            {else /}
+                            <thead>
+                            <tr>
+                                <td>{$members.id}</td>
+                                <td>{$members.nickname}</td>
+                                <td>{$members.profile.addr}</td>
+                                <td>{$members.profile.email}</td>
+                                <td>{$members.profile.tel}</td>
+                                <td>{$members.profile.age}</td>
+                                <td>
+                                    <a href="{:url('admin/customer/customeredit', ['id' => $members.id])}" class="btn btn-azure btn-xs">编辑</a>
+                                    <a href="#" dataid="{$members.id}" class="btn btn-danger btn-xs memberDel">删除</a>
+                                </td>
+                            </tr>
+                            </thead>
+                            {/if}
                         </table>
                     </div>
                 </div>
             </div>
         </div>
+        {if count($members) gt 1}
+        <div style="width: 100%">
+            {$members}
+        </div>
+        {else /}
+        {/if}
     </div>
     <!-- /Page Body -->
 </div>

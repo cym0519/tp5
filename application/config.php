@@ -239,7 +239,7 @@ return [
 
     //分页配置
     'paginate'               => [
-        'type'      => 'bootstrap',
+        'type'      => 'bootstrapDetailed',
         'var_page'  => 'page',
         'list_rows' => 15,
     ],

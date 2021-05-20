@@ -1,0 +1,115 @@
+{extend name="base" /}
+{block name="content"}
+<div class="page-content">
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li class="active">
+                <i class="fa fa-home"></i>&nbsp;用户管理
+            </li>
+            <li>
+                用户编辑
+            </li>
+        </ul>
+    </div>
+    <!-- /Page Breadcrumb -->
+    <!-- Page Body -->
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="widget radius-bordered">
+                    <div class="widget-header bordered-bottom bordered-themeprimary">
+                        <span class="widget-caption">用户编辑</span>
+                    </div>
+                    <div class="widget-body">
+                        <form class="form-horizontal">
+                            <input type="hidden" name="id" value="{$memberInfo.id}">
+                            <div class="form-group">
+                                <label for="nickname" class="col-sm-2 control-label no-padding-right">昵称</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="nickname" name="nickname" value="{$memberInfo.nickname}" placeholder="昵称">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="oldpass" class="col-sm-2 control-label no-padding-right">原密码</label>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control" id="oldpass" name="oldpass" placeholder="原密码">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="newpass" class="col-sm-2 control-label no-padding-right">新密码</label>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control" id="newpass" name="newpass" placeholder="新密码">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="col-sm-2 control-label no-padding-right">地址</label>
+                                <div class="col-sm-6">
+                                    <input type="email" class="form-control" id="addr" name="addr" value="{$memberInfo.profile.addr}" placeholder="地址" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="col-sm-2 control-label no-padding-right">邮箱</label>
+                                <div class="col-sm-6">
+                                    <input type="email" class="form-control" id="email" name="email" value="{$memberInfo.profile.email}" placeholder="邮箱" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="col-sm-2 control-label no-padding-right">电话号码</label>
+                                <div class="col-sm-6">
+                                    <input type="email" class="form-control" id="tel" name="tel" value="{$memberInfo.profile.tel}" placeholder="电话号码" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="col-sm-2 control-label no-padding-right">年龄</label>
+                                <div class="col-sm-6">
+                                    <input type="email" class="form-control" id="age" name="age" value="{$memberInfo.profile.age}" placeholder="年龄" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" id="memberEdit" class="btn btn-primary">修改</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Body -->
+</div>
+{/block}
+{block name="js"}
+{__block__}
+<script>
+    $(function () {
+        $('#memberEdit').click(function () {
+            $.ajax({
+                url:"{:url('admin/customer/customeredit')}",
+                type:'post',
+                data:$('form').serialize(),
+                dataType:'json',
+                success:function (data) {
+                    if (data.code == 1) {
+                        layer.msg(data.msg, {
+                            icon:6,
+                            time:2000
+                        }, function () {
+                            location.href = data.url;
+                        });
+                    }else {
+                        layer.open({
+                            title:'信息修改失败',
+                            content:data.msg,
+                            icon:5,
+                            anim:6
+                        });
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+{/block}

@@ -9,6 +9,8 @@ use think\Db;
 use think\paginator\driver\Bootstrap;
 use think\Request;
 use think\Session;
+use think\Validate;
+
 class Index extends Controller
 {
     //初始化
@@ -26,13 +28,35 @@ class Index extends Controller
     public function index(){
         $data = [
             'name' => Session::get('name'),
-            'rand' => $this->mewscontent()
         ];
         return $this->view->fetch('index',$data);
     }
     //联系页面
     public function contact(){
-
+        if (\request()->isAjax()){
+            $data = [
+                'nickname' => input('nickname'),
+                'email' => input('email'),
+                'content' => input('content')
+            ];
+            $rule = [
+                'nickname|昵称' => 'require',
+                'email|邮箱' => 'require|email',
+                'content|留言内容' => 'require'
+            ];
+            $validate = new Validate($rule);
+            $res = $validate->check($data);
+            if ($res){
+                $result = Db::name('message')->insert($data);
+                if ($result){
+                    $this->success('留言成功','api/index/contact');
+                }else{
+                    $this->error('留言失败');
+                }
+            }else{
+                $this->error($validate->getError());
+            }
+        }
         return $this->view->fetch('contact');
     }
     //shop页面
