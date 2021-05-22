@@ -36,4 +36,5 @@ Route::group('admin',function (){
     Route::rule('retrieve','api/api/retrieve','get|post');
     Route::rule('register','api/api/register','get|post');
     Route::rule('search','api/index/search','get|post');
+    Route::rule('redis','api/index/redis','get|post');
     Route::rule('/','api/api/login','get|post');

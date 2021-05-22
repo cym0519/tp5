@@ -10,7 +10,7 @@ use think\paginator\driver\Bootstrap;
 use think\Request;
 use think\Session;
 use think\Validate;
-
+use think\Cache;
 class Index extends Controller
 {
     //初始化
@@ -175,5 +175,24 @@ class Index extends Controller
         }else{
             return view();
         }
+    }
+    //redis测试
+    public function redis(){
+        $redis = new \Redis();
+        // $redis->connect('127.0.0.1','6379');
+        // $redis->set('demo','123123');
+        // $data = Db::name('customer')->paginate(1000);
+        // Cache::store('redis')->set('demo','123456');
+        // Cache::store('redis')->set('demo',$data);
+        // $list = Cache::get('demo') ? Cache::get('demo') : $data;
+        // $list = '2222222222';
+        if(Cache::get('demo')){
+            $list = Cache::store('redis')->get('demo');
+        }else{
+            $list = Db::name('customer')->paginate(500);
+            Cache::store('redis')->set('demo',$list,3600);
+        }
+        print_r($list);
+        // print_r(Cache::get('cym'));
     }
 }
