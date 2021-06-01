@@ -140,6 +140,73 @@ function ipaddr($ip){
         echo "请求失败";
     }
 }
+//新闻头条的查询
+function top(){
+    $apiurl = 'http://v.juhe.cn/toutiao/index';
+    // 请求参数
+    $params = [
+        'type' => 'top', // 新闻类型
+        'key' => '90c24de36649d04f798e70d89339c027', // 接口调用key，通过聚合平台申请开通
+    ];
+    $paramsString = http_build_query($params);
+
+    // 发起接口请求
+    $response = juhecurl($apiurl, $paramsString, 1);
+
+    // 处理接口返回结果，根据自身业务逻辑修改处理
+    $paramstring = http_build_query($params);
+    $content = juhecurl($apiurl, $paramstring, 1);
+    $result = json_decode($content, true);
+    if ($result) {
+        if ($result['error_code'] == 0) {
+            // 请求成功，根据自身业务逻辑修改处理
+            $news = $result['result']['data'];
+            return $news;
+//            if ($news) {
+//                foreach ($news as $key => $newsInfo) {
+//                    // 更多字段，请参考官方接口文档
+//                    echo $newsInfo['title'].PHP_EOL;
+//                }
+//            }
+        } else {
+            // 请求异常，根据自身业务逻辑修改处理
+            echo "{$result['error_code']}:{$result['reason']}" . PHP_EOL;
+        }
+    } else {
+        //可能网络异常等问题请求失败，根据自身业务逻辑修改处理
+        echo "请求失败";
+    }
+}
+//新闻头条详情查询
+function detail($key){
+    $apiurl = 'http://v.juhe.cn/toutiao/content';
+    // 请求参数
+    $params = [
+        'uniquekey' => $key, // 新闻ID
+        'key' => '90c24de36649d04f798e70d89339c027', // 接口调用key，通过聚合平台申请开通
+    ];
+    $paramsString = http_build_query($params);
+
+    // 发起接口请求
+    $response = juhecurl($apiurl, $paramsString, 1);
+
+    // 处理接口返回结果，根据自身业务逻辑修改处理
+    $paramstring = http_build_query($params);
+    $content = juhecurl($apiurl, $paramstring, 1);
+    $result = json_decode($content, true);
+    if ($result) {
+        if ($result['error_code'] == 0) {
+            // 请求成功，根据自身业务逻辑修改处理
+            return $newsContent = $result['result'];
+        } else {
+            // 请求异常，根据自身业务逻辑修改处理
+            echo "{$result['error_code']}:{$result['reason']}" . PHP_EOL;
+        }
+    } else {
+        //可能网络异常等问题请求失败，根据自身业务逻辑修改处理
+        echo "请求失败";
+    }
+}
 //聚合数据API接口
 function juhecurl($url,$params=false,$ispost=0){
     $httpInfo = array();

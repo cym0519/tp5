@@ -206,6 +206,8 @@ return [
         'default' => [
             'type' => 'File',
             'path' => CACHE_PATH,
+            'prefix' => '',
+            'expire' => 60,
         ],
         //文件缓存
         'file' =>[
@@ -237,7 +239,7 @@ return [
         // 是否自动开启 SESSION
         'auto_start'     => true,
         //设置过期时间
-        'expire'         => 10,
+        'expire'         => 3600,
     ],
 
     // +----------------------------------------------------------------------
@@ -263,6 +265,7 @@ return [
     //分页配置
     'paginate'               => [
         'type'      => 'bootstrapDetailed',
+//        'type'      => 'bootstrap',
         'var_page'  => 'page',
         'list_rows' => 15,
     ],

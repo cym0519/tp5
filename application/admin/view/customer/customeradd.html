@@ -8,7 +8,7 @@
                 <i class="fa fa-home"></i>&nbsp;用户管理
             </li>
             <li>
-                用户编辑
+                用户添加
             </li>
         </ul>
     </div>
@@ -19,44 +19,37 @@
             <div class="col-xs-12">
                 <div class="widget radius-bordered">
                     <div class="widget-header bordered-bottom bordered-themeprimary">
-                        <span class="widget-caption">用户编辑</span>
+                        <span class="widget-caption">用户添加</span>
                     </div>
                     <div class="widget-body">
                         <form class="form-horizontal">
-                            <input type="hidden" name="id" value="{$memberInfo.id}">
                             <div class="form-group">
                                 <label for="nickname" class="col-sm-2 control-label no-padding-right">昵称</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="nickname" name="nickname" value="{$memberInfo.nickname}" placeholder="昵称">
+                                    <input type="text" class="form-control" id="nickname" name="nickname" placeholder="输入昵称" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="email" class="col-sm-2 control-label no-padding-right">地址</label>
+                                <label for="password" class="col-sm-2 control-label no-padding-right">密码</label>
                                 <div class="col-sm-6">
-                                    <input type="email" class="form-control" id="addr" name="addr" value="{$memberInfo.profile.addr}" placeholder="地址" >
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="输入密码">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="conpass" class="col-sm-2 control-label no-padding-right">确认密码</label>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control" id="conpass" name="conpass" placeholder="确认密码">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="email" class="col-sm-2 control-label no-padding-right">邮箱</label>
                                 <div class="col-sm-6">
-                                    <input type="email" class="form-control" id="email" name="email" value="{$memberInfo.profile.email}" placeholder="邮箱" >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="col-sm-2 control-label no-padding-right">电话号码</label>
-                                <div class="col-sm-6">
-                                    <input type="email" class="form-control" id="tel" name="tel" value="{$memberInfo.profile.tel}" placeholder="电话号码" >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="col-sm-2 control-label no-padding-right">年龄</label>
-                                <div class="col-sm-6">
-                                    <input type="email" class="form-control" id="age" name="age" value="{$memberInfo.profile.age}" placeholder="年龄" >
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="邮箱">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" id="memberEdit" class="btn btn-primary">修改</button>
+                                    <button type="submit" id="memberAdd" class="btn btn-primary">添加</button>
                                 </div>
                             </div>
                         </form>
@@ -72,9 +65,9 @@
 {__block__}
 <script>
     $(function () {
-        $('#memberEdit').click(function () {
+        $('#memberAdd').click(function () {
             $.ajax({
-                url:"{:url('admin/customer/customeredit')}",
+                url:"{:url('admin/customer/customeradd')}",
                 type:'post',
                 data:$('form').serialize(),
                 dataType:'json',
@@ -88,7 +81,7 @@
                         });
                     }else {
                         layer.open({
-                            title:'信息修改失败',
+                            title:'用户添加失败',
                             content:data.msg,
                             icon:5,
                             anim:6

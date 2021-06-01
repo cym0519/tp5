@@ -109,6 +109,21 @@ class Index extends Controller
         $this->assign('page',$page);
         return view();
     }
+    //新闻头条
+    public function top(){
+        $data = top();
+//        print_r($data);
+        $this->assign('data',$data);
+        return view();
+    }
+    //头条新闻详情
+    public function detail(){
+        $data = input();
+        $result = detail($data['key']);
+//        print_r($result);die();
+        $this->assign('data',$result);
+        return view();
+    }
     //签到
     public function sign(){
         if (\request()->isAjax()){
@@ -178,7 +193,7 @@ class Index extends Controller
     }
     //redis测试
     public function redis(){
-        $redis = new \Redis();
+//        $redis = new Redis();
         // $redis->connect('127.0.0.1','6379');
         // $redis->set('demo','123123');
         // $data = Db::name('customer')->paginate(1000);
@@ -186,11 +201,11 @@ class Index extends Controller
         // Cache::store('redis')->set('demo',$data);
         // $list = Cache::get('demo') ? Cache::get('demo') : $data;
         // $list = '2222222222';
-        if(Cache::get('demo')){
-            $list = Cache::store('redis')->get('demo');
+        if(Cache::get('demos')){
+            $list = Cache::get('demos');
         }else{
-            $list = Db::name('customer')->paginate(500);
-            Cache::store('redis')->set('demo',$list,3600);
+            $list = Db::name('customer')->paginate(1000);
+            Cache::set('demos',$list,10);
         }
         print_r($list);
         // print_r(Cache::get('cym'));

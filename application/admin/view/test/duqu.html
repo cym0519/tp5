@@ -1,0 +1,40 @@
+{extend name="base" /}
+{block name="content"}
+<div class="page-content">
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li class="active">
+                <i class="fa fa-home"></i>&nbsp;图片
+            </li>
+        </ul>
+    </div>
+    <!-- /Page Breadcrumb -->
+    <!-- Page Body -->
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="widget radius-bordered">
+                    <div class="widget-header bordered-bottom bordered-themeprimary">
+                        <span class="widget-caption">图片</span>
+                    </div>
+                    <div class="widget-body">
+                        <form class="form-horizontal">
+                            {volist name='data' id='vo'}
+                            <div class="form-group" style="float: left; margin: 20px">
+                                <img style="height: 100px; width: 100px" src="{$vo.url}">
+                            </div>
+                            {/volist}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Body -->
+</div>
+{/block}
+{block name="js"}
+{__block__}
+
+{/block}

@@ -26,6 +26,9 @@ Route::group('admin',function (){
     Route::rule('customeredit/[:id]','admin/customer/customeredit','get|post');
     Route::rule('customeradd','admin/customer/customeradd','get|post');
     Route::rule('customerdel','admin/customer/customerdel','get|post');
+    Route::rule('upload','admin/test/upload','get|post');
+    Route::rule('duqu','admin/test/duqu','get|post');
+    Route::rule('getdata','admin/test/getdata','get|post');
 });
     Route::rule('weather','api/index/weather','get|post');
     Route::rule('getip','api/index/getip','get|post');
@@ -37,4 +40,6 @@ Route::group('admin',function (){
     Route::rule('register','api/api/register','get|post');
     Route::rule('search','api/index/search','get|post');
     Route::rule('redis','api/index/redis','get|post');
+    Route::rule('top','api/index/top','get|post');
+    Route::rule('detail/[:key]','api/index/detail','get|post');
     Route::rule('/','api/api/login','get|post');
