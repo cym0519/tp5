@@ -36,7 +36,7 @@ class Api extends Controller{
                 'username' =>input('username'),
                 'password' =>md5(input('password')),
             ];
-            $code=trim(input('vcode'));
+            $code=trim(input('post.vcode'));
             if (!captcha_check($code)){
                 $this->error('验证码错误');
                 return false;
